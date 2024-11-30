@@ -1,0 +1,126 @@
+header {
+    justify-content: center;
+    background-color: #fff; /* 背景色 */
+    padding: 10px 20px; /* 上下左右のパディング */
+    border-bottom: 2px solid #ddd;
+    
+    
+    nav {
+        display: flex; /* 横並びに */
+        align-items: center; /* 縦方向の中央揃え */
+    }
+    
+    nav a {
+        text-decoration: none; /* 下線を削除 */
+        font-size: 18px; /* フォントサイズ */
+        color: #333; /* テキストの色 */
+        padding: 8px 50px; /* パディング */
+        transition: color 0.3s ease, background-color 0.3s ease; /* ホバー時の変化 */
+        border-radius: 25px;
+    }
+    
+    nav a:hover {
+        color: #fff; /* ホバー時のテキスト色 */
+        background-color: #007bff; /* ホバー時の背景色 */
+        border-radius: 25px; /* 角を丸く */
+    }
+    
+    nav a:active {
+        transform: scale(0.95); /* リンクがクリックされた時に縮小（押し込まれる感じ） */
+        background-color: #acb1df; /* クリック時に背景色を少し濃く変更 */
+        border-radius: 25px;
+        background-color: #007b00; /* 押した後の保持される背景色 */
+        color: #fff; /* テキスト色を白に変更 */
+    }
+    
+    nav a:focus {
+        background-color: #007bff; /* 選択中の背景色を変更 */
+        outline: none; 
+        border-radius: 25px;
+        transform: scale(1.05);
+    }
+
+    .circle-button {
+        width: 40px; /* ボタンの幅を40pxに設定 */
+        height: 40px; /* ボタンの高さを40pxに設定 */
+        border-radius: 50%; /* ボタンを円形にするため、半径50%を指定 */
+        background-color: #4c9fd2; /* ボタンの背景色を青色に設定 */
+        color: white; /* ボタン内のテキスト色を白色に設定 */
+        font-size: 20px; /* テキストのフォントサイズを20pxに設定 */
+        border: none; /* ボタンの枠線を消す */
+        display: flex; /* フレックスボックスを使用して中央揃えにする */
+        justify-content: center; /* 横方向の中央揃え */
+        align-items: center; /* 縦方向の中央揃え */
+        cursor: pointer; /* ポインタカーソルを表示 */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ボタンに影をつける */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* ホバー時に色とサイズが変わるようにアニメーションを設定 */
+        position: absolute; /* 親要素内で絶対位置に配置 */
+        right: 50px; /* 親要素の右端からpx離れた位置に配置 */
+        top: 20px; /* 親要素の上端から20px離れた位置に配置 */
+    }
+
+    .circle-button:hover {
+        background-color: #007bff; /* ホバー時の背景色（青を少し濃く） */
+        transform: scale(1.1); /* 少し拡大する */
+    }
+    
+    .circle-button:active {
+        transform: scale(0.95); /* クリック時にボタンを少し縮める（押した感触） */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を少し小さくして、押し込まれた感覚を演出 */
+    }
+    
+    
+    .circle-button:focus {
+        background-color: #004085; /* 選択中の背景色 */
+        outline: none; /* フォーカス時のアウトラインを消す */
+    }
+
+    .search-container {
+        display: flex; /* 子要素（検索フィールドとボタン）を横並びに配置 */
+        align-items: center; /* 子要素を垂直方向に中央揃え */
+        gap: 8px; /* 検索フィールドとボタンの間隔を 8px に設定 */
+        margin-left: 15px; /* 左側の余白を 15px に設定 */
+    }
+      
+    .search-field {
+        padding: 8px; /* 内側の余白を 8px に設定 */
+        border-radius: 4px; /* 角を少し丸くする */
+        border: 1px solid #ccc; /* 灰色の境界線を追加 */
+        flex: 1; /* フレックスコンテナ内で検索フィールドを可能な限り広げる */
+    }
+      
+    .search-button {
+        padding: 5px 16px; /* 縦方向に 8px、横方向に 16px の内側余白を設定 */
+        background-color: #007bff; /* ボタンの背景色を青色に設定 */
+        color: white; /* ボタン内のテキスト色を白に設定 */
+        border: none; /* 境界線をなくす */
+        border-radius: 4px; /* 角を少し丸くする */
+        cursor: pointer; /* マウスカーソルをクリック可能な形状にする */
+        transition: transform 0.1s, background-color 0.2s; /* サイズや背景色の変化をスムーズにする */
+    }
+      
+    .search-button:hover {
+        background-color: #0056b3; /* ボタンにマウスを乗せたときに背景色を濃い青に変更 */
+    }
+      
+    .search-button:active {
+        transform: scale(0.9); /* ボタンを押したときに少し縮小させる */
+        background-color: #003d82; /* 押したときにさらに濃い青色に変更 */
+    }
+      
+      .circle-button {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      .circle-button:hover {
+        background-color: #0056b3;
+      }
+
+}
