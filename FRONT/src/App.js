@@ -4,8 +4,6 @@ import TopPage from './pages/TopPage/TopPage.js';
 import SlideView from './pages/SlideView/SlideView.js';
 
 
-
-
 function App() {
   return (
     <Router>
