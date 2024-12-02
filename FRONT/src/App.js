@@ -1,12 +1,18 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TopPage from './pages/TopPage/TopPage.js';
+import SlideView from './pages/SlideView/SlideView.js';
+
+
 function App() {
-    return (
-    <div className="App">
-        <header className="App-header">
-        <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
-        </header>
-    </div>
-    );
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<TopPage />} />
+        <Route path="/slideview" element={<SlideView />} />
+      </Routes>
+    </Router>
+  );
 }
+
 export default App;

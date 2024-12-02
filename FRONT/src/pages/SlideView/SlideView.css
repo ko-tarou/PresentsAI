@@ -1,0 +1,47 @@
+.SlideView {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    
+}
+
+.leftside {
+    flex: 2; /* 全体の2割の高さ */
+    background-color: #f6f8f9; /* 背景色 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rightside {
+    flex: 8; /* 全体の8割の高さ */
+    background-color: #ffffff; /* 背景色 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-whole {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列のグリッド */
+    gap: 5%; /* 各ボックス間の間隔 */
+    width: 100%;
+    max-width: none; /* 最大幅を制限しない */
+    margin-left: 5%;
+    
+}
+
+/* 各ボックス */
+.box {
+    background-color: #8c7b76; /* ボックスの背景色 */
+    border-radius: 4px; /* 角丸 */
+    aspect-ratio: 16 / 9; /* 横16：縦9の比率を設定 */
+    width: 90%; /* 幅をグリッドに応じて設定 */
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow: auto; 
+    height: 100%; /* 要素が画面全体を覆うように設定 */
+
+}
