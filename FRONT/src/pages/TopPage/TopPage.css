@@ -1,0 +1,101 @@
+/* ベース設定 */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+  /* ヘッダー */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-section {
+    width: 120px; /* 左右セクションの幅を固定 */
+    height: 40px; /* 左右セクションの高さを統一 */
+    border-radius: 20px;
+  }
+  
+  .header-section.left {
+    background-color: #c4c4c4;
+  }
+  
+  .header-section.center {
+    background-color: #d97070;
+    box-shadow: 0 2px 6px rgba(217, 112, 112, 0.5);
+  }
+  
+  .header-section.right {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #c4c4c4;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .header-section.right:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.1);
+  }
+  
+  /* メインセクション */
+  /* メインコンテンツ */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* 中央ではなく上に配置 */
+  text-align: center;
+  flex: 1;
+  margin-top: 30px; /* タイトルを上に少し余白を追加 */
+}
+
+.title {
+  font-size: 500%;
+  font-weight: bold;
+  margin-bottom: 50px; /* ボタンと十分な余白を確保 */
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d3d3d3;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #bbb;
+  }
+  
