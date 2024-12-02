@@ -23,7 +23,7 @@ body, html {
   }
   
   .header-section {
-    width: 120px; /* 左右セクションの幅を固定 */
+    width: 200px; /* 左右セクションの幅を固定 */
     height: 40px; /* 左右セクションの高さを統一 */
     border-radius: 20px;
   }
@@ -79,23 +79,30 @@ body, html {
 
 
   
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #d3d3d3;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .button:hover {
-    background-color: #bbb;
-  }
+  /* ボタンのコンテナ */
+.buttons {
+  display: flex;
+  flex-direction: column; /* 縦に並べる */
+  gap: 70px; /* ボタン間の間隔を20pxに増やす */
+  margin-top: 20px; /* タイトルとボタンの間隔を調整 */
+}
+
+/* ボタン */
+.button {
+  background-color: #d9d9d9;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px; /* 高さと幅を増やす */
+  font-size: 18px; /* フォントサイズを大きく */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 300px; /* ボタン全体の幅を固定 */
+  text-align: center; /* テキストを中央揃え */
+}
+
+.button:hover {
+  background-color: #b0b0b0;
+}
+
   
