@@ -18,7 +18,7 @@ function TopPage() {
           <button className="button" onClick={() => navigate('/slideview')}>
             作ったスライドを見る
           </button>
-          <button className="button" onClick={() => navigate('/PresentsAI/FRONT/src/pages/SlidePage/')}>
+          <button className="button" onClick={() => navigate('/slidepage/')}>
             新規作成 
           </button>
         </div>
