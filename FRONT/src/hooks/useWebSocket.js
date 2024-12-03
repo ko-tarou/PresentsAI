@@ -1,45 +1,59 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react';
+import io from 'socket.io-client';
 
-function useWebSocket() {
-	const [messages,setMessages] = useState([]);
-	const[input,setInput] = useState('');
-	const[socket,setSocket] = useState(null);
+const socket = io("https://1d32-202-13-166-100.ngrok-free.app"); // Adjust the URL as needed
 
-	useEffect(() => {
-		const ws = new WebSocket('ws://localhost:8080');
+const useWebSocket = (setTextBoxes, setSelectedBoxId) => {
+  useEffect(() => {
+    // Receive initial text boxes from the server
+    socket.on("textBoxes", (data) => {
+      setTextBoxes(data);
+    });
 
-		ws.onopen = () => {
-			console.log('接続完了')
-		}
+    // Listen for updates to text boxes
+    socket.on("textBoxUpdated", (updatedBox) => {
+      setTextBoxes((prevBoxes) => {
+        const existingIndex = prevBoxes.findIndex(box => box.id === updatedBox.id);
+        if (existingIndex !== -1) {
+          const updatedBoxes = [...prevBoxes];
+          updatedBoxes[existingIndex] = updatedBox;
+          return updatedBoxes;
+        } else {
+          return [...prevBoxes, updatedBox];
+        }
+      });
+    });
 
-		ws.onmessage = (event) => {
-			console.log('サーバーからのメッセージ:',event.data)
-			setMessages((prev) => [...prev,event.data])
-		}
+    // Listen for deleted text boxes
+    socket.on("deleteTextBox", (boxId) => {
+      setTextBoxes((prevBoxes) => prevBoxes.filter((box) => box.id !== boxId));
+    });
 
-		ws.onclose = () => {
-			console.log('切断しました')
-		}
+    // Cleanup listeners on component unmount
+    return () => {
+      socket.off("textBoxes");
+      socket.off("textBoxUpdated");
+      socket.off("deleteTextBox");
+    };
+  }, [setTextBoxes]);
 
-		ws.onerror = (error) => {
-			console.error('WebSocketエラー',error)
-		}
+  // Notify server about text box updates
+  const updateTextBox = (box) => {
+    socket.emit("updateTextBox", box);
+  };
 
-		setSocket(ws);
+  // Notify server about adding a new text box
+  const addTextBox = (box) => {
+    socket.emit("addTextBox", box);
+  };
 
-		return () => {
-			ws.close();
-		}
-	},[])
+  // Notify server about deleting a text box
+  const deleteTextBox = (boxId) => {
+    socket.emit("deleteTextBox", boxId);
+    setSelectedBoxId(null); // Reset selected box
+  };
 
-	const sendMessage = () => {
-		if (socket && input){
-			socket.send(input);
-			setInput('');
-		}
-	}
+  return { updateTextBox, addTextBox, deleteTextBox };
+};
 
-	return { messages, input, setInput, sendMessage };
-}
-
-export default useWebSocket
+export default useWebSocket;
