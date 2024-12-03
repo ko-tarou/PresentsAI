@@ -7,11 +7,6 @@ function TopPage() {
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-section left"></div>
-        <div className="header-section center"></div>
-        <button className="header-section right">?</button>
-      </header>
       <main className="main">
         <h1 className="title">PresentsAI</h1>
         <div className="buttons">
