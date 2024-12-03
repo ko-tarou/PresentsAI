@@ -1,35 +1,76 @@
 header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 15px;
-    background-color: #fff;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 5px 15px;
+    border-bottom: 1px solid #ddd;
+    height: 7vh;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20%;
 }
 
 nav a {
-    text-decoration: none; /* 下線を削除 */
-    font-size: 18px; /* フォントサイズ */
-    color: #333; /* テキストの色 */
-    padding: 8px 50px; /* パディング */
-    transition: color 0.3s ease, background-color 0.3s ease; /* ホバー時の変化 */
+    text-decoration: none;
+    font-size: 120%;
+    color: #333;
+    padding: 5% 12%;
+    transition: color 0.3s ease, background-color 0.3s ease;
     border-radius: 25px;
 }
 
 nav a:hover {
-    color: #fff; /* ホバー時のテキスト色 */
-    background-color: #007bff; /* ホバー時の背景色 */
-    border-radius: 25px; /* 角を丸く */
+    color: #fff;
+    background-color: #ba5959;
+    border-radius: 25px;
 }
 
 nav a:active {
-    transform: scale(0.95); /* リンクがクリックされた時に縮小（押し込まれる感じ） */
-    background-color: #007b00; /* クリック時の背景色 */
-    color: #fff; /* テキスト色を白に変更 */
+    transform: scale(0.95);
+    background-color: #007b00;
+    color: #fff;
 }
 
 nav a:focus {
-    background-color: #007bff; /* 選択中の背景色を変更 */
+    background-color: #8a4040;
+    color: #fff;
     outline: none; 
-    border-radius: 25px;
     transform: scale(1.05);
+}
+
+.search-container {
+    display: flex; 
+    align-items: center;
+    gap: 5px;
+    margin-right: 8%;
+}
+
+.search-field {
+    padding: 8px;
+    border-radius: 4px;
+    border: 0.3px solid #bababa;
+    flex: 1;
+}
+
+.search-button {
+    padding: 5px 8px;
+    background-color: #706e6e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.search-button:hover {
+    background-color: #5a5a5d;
+}
+
+.search-button:active {
+    transform: scale(0.9);
+    background-color: #393b3d;
 }
