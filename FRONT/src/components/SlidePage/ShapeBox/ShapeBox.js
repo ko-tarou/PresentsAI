@@ -4,8 +4,7 @@ import { ItemTypes } from '../DropZone/ItemTypes';
 
 function ShapeBox({ id, text, x, y, onSelect, onFocus, onBlur }) {
 const [value, setValue] = useState(text || "");
-const [size, setSize] = useState({ width: 100, height: 50 });
-const [isEditing, setIsEditing] = useState(false); // 新しく追加
+const [size, setSize] = useState({ width: 50, height: 50 });
 
 useEffect(() => {
 	setValue(text);
@@ -103,16 +102,6 @@ backgroundColor: 'transparent',
 cursor: `${vertical || ''}${horizontal || ''}-resize`,
 [vertical]: vertical && 0,
 [horizontal]: horizontal && 0,
-});
-
-const centerHandleStyle = (position) => ({
-position: 'absolute',
-width: position === 'top' || position === 'bottom' ? '30px' : '8px',
-height: position === 'left' || position === 'right' ? '30px' : '8px',
-backgroundColor: 'transparent',
-cursor: 'pointer',
-[position]: '50%',
-transform: 'translate(-50%, -50%)',
 });
 
 export default ShapeBox;
