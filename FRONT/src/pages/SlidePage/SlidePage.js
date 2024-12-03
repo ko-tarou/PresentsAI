@@ -65,11 +65,6 @@ function Slidepage() {
     <DndProvider backend={HTML5Backend}>
       <div className='slide-page'>
 
-        {/* 上部バー */}
-        <div className="header">
-          <button className="enter-room-button">部屋に入る</button>
-        </div>
-
         <div className='content'>
           <div className='left-sidebar'>
             <TabContent activeTab={activeTab} />
