@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
-import useWebSocket from '../../hooks/useWebSocket';
 
 function PresenPage() {
 	const containerRef = useRef(null); // 全画面にする要素を参照
-	const { sendMessage, messages } = useWebSocket('ws://localhost:8080');
 	
 	// フルスクリーンにする関数
 	const enterFullscreen = () => {
@@ -49,9 +47,7 @@ function PresenPage() {
 			<div>
 				<h2>メッセージ</h2>
 				<ul>
-					{messages.map((msg,index) => (
-						<li key = { index }>{msg}</li>
-					))}
+					
 				</ul>
 			</div>
 			{/* 緑の四角 */}
