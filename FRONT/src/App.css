@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    background-color: #fff;
+}
+
+nav a {
+    text-decoration: none; /* 下線を削除 */
+    font-size: 18px; /* フォントサイズ */
+    color: #333; /* テキストの色 */
+    padding: 8px 50px; /* パディング */
+    transition: color 0.3s ease, background-color 0.3s ease; /* ホバー時の変化 */
+    border-radius: 25px;
+}
+
+nav a:hover {
+    color: #fff; /* ホバー時のテキスト色 */
+    background-color: #007bff; /* ホバー時の背景色 */
+    border-radius: 25px; /* 角を丸く */
+}
+
+nav a:active {
+    transform: scale(0.95); /* リンクがクリックされた時に縮小（押し込まれる感じ） */
+    background-color: #007b00; /* クリック時の背景色 */
+    color: #fff; /* テキスト色を白に変更 */
+}
+
+nav a:focus {
+    background-color: #007bff; /* 選択中の背景色を変更 */
+    outline: none; 
+    border-radius: 25px;
+    transform: scale(1.05);
+}
