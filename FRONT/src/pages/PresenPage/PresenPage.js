@@ -47,9 +47,7 @@ function PresenPage() {
 			<div>
 				<h2>メッセージ</h2>
 				<ul>
-					{messages.map((msg,index) => (
-						<li key = { index }>{msg}</li>
-					))}
+					
 				</ul>
 			</div>
 			{/* 緑の四角 */}
