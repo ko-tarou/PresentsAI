@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../DropZone/ItemTypes';
 
-function TextBox({ id, text, x, y, onTextChange, onSelect, onFocus, onBlur }) {
+function ShapeBox({ id, text, x, y, onSelect, onFocus, onBlur }) {
 const [value, setValue] = useState(text || "");
 const [size, setSize] = useState({ width: 100, height: 50 });
 const [isEditing, setIsEditing] = useState(false); // 新しく追加
@@ -12,30 +12,17 @@ useEffect(() => {
 }, [text]);
 
 const [{ isDragging }, drag] = useDrag({
-	type: ItemTypes.TEXT_BOX,
+	type: ItemTypes.SHAPE_BOX,
 	item: { id, text: value, x, y },
 	collect: (monitor) => ({
 	isDragging: monitor.isDragging(),
 	}),
 });
 
-const handleChange = (e) => {
-	setValue(e.target.value);
-	onTextChange(id, e.target.value);
-};
-
 const handleClick = () => {
 	if (onSelect) {
 	onSelect(id);
 	}
-};
-
-const handleDoubleClick = () => {
-	setIsEditing(true); // ダブルクリック時に編集モードに切り替え
-};
-
-const handleBlur = () => {
-	setIsEditing(false); // 入力エリアからフォーカスを外したときに編集モードを終了
 };
 
 const handleResize = (e, direction) => {
@@ -73,13 +60,12 @@ const handleResize = (e, direction) => {
 
 	document.addEventListener("mousemove", handleMouseMove);
 	document.addEventListener("mouseup", handleMouseUp);
-};
+}; //マウスでBOXの大きさを変更する
 
 return (
 	<div
 	ref={drag}
 	onClick={handleClick}
-	onDoubleClick={handleDoubleClick} // ダブルクリックイベントの追加
 	onFocus={onFocus}
 	onBlur={onBlur}
 	style={{
@@ -95,25 +81,6 @@ return (
 		transform: 'translate(-50%, -50%)',
 	}}
 	>
-	{isEditing ? (
-		<input
-		type="text"
-		value={value}
-		onChange={handleChange}
-		onBlur={handleBlur} // 入力終了時のイベント追加
-		autoFocus // 自動的にフォーカス
-		style={{
-			width: '100%',
-			height: '100%',
-			border: 'none',
-			outline: 'none',
-		}}
-		/>
-	) : (
-		<div style={{ width: '100%', height: '100%' }}>
-		{value || "ダブルクリックで編集"}
-		</div>
-	)}
 	{/* 四隅のリサイズハンドル */}
 	<div onMouseDown={(e) => handleResize(e, "top-left")} style={resizeHandleStyle("top", "left")} />
 	<div onMouseDown={(e) => handleResize(e, "top-right")} style={resizeHandleStyle("top", "right")} />
@@ -124,11 +91,6 @@ return (
 	<div onMouseDown={(e) => handleResize(e, "right")} style={resizeHandleStyle("right")} />
 	<div onMouseDown={(e) => handleResize(e, "bottom")} style={resizeHandleStyle("bottom")} />
 	<div onMouseDown={(e) => handleResize(e, "left")} style={resizeHandleStyle("left")} />
-	{/* 上下左右の中点クリックでテキストボックス選択 */}
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("top")} />
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("right")} />
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("bottom")} />
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("left")} />
 	</div>
 );
 }
@@ -153,4 +115,4 @@ cursor: 'pointer',
 transform: 'translate(-50%, -50%)',
 });
 
-export default TextBox;
+export default ShapeBox;
