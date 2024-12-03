@@ -19,8 +19,10 @@ function TopPage() {
             作ったスライドを見る
           </button>
           <button className="button" onClick={() => navigate('/slidepage/')}>
+            スライドを作成
+          </button>
           <button className="button" onClick={() => navigate('/presen')}>
-            新規作成 
+            発表
           </button>
         </div>
       </main>
