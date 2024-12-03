@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
-import { ItemTypes } from '../DropZone/ItemTypes';
+
 
 function TextBox({ id, text, x, y, onTextChange, onSelect, onFocus, onBlur }) {
 const [value, setValue] = useState(text || "");
