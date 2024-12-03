@@ -2,7 +2,7 @@
 .slide-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 91vh;
   background-color: #f2f2f2;
 }
 
@@ -11,19 +11,6 @@
   background-color: #d9d9d9;
   padding: 10px;
   text-align: center;
-}
-
-.enter-room-button {
-  background-color: #c94b4b;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.enter-room-button:hover {
-  background-color: #a63a3a;
 }
 
 /* メインコンテンツ */
