@@ -1,0 +1,18 @@
+.Char{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	align-content: center;
+}
+
+
+.Char .normal{
+	font-size: 10px;
+}
+
+.Char .item{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
