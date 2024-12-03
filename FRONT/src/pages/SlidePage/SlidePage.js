@@ -113,29 +113,35 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 	return (
 		<DndProvider backend={HTML5Backend}>
 		<div className='slide-page'>
-			<div className="header">
-			<button className="enter-room-button">部屋に入る</button>
-			</div>
 			<div className='content'>
-			<div className='left-sidebar'>
-				<TabContent activeTab={activeTab} />
-			</div>
-			<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
-				<DropZone onDrop={handleDrop} />
-				{textBoxes.map((box) => (
-				<TextBox
-					key={box.id}
-					id={box.id}
-					text={box.text}
-					x={box.x}
-					y={box.y}
-					onTextChange={handleTextChange}
-					onSelect={() => setSelectedBoxId(box.id)}
-					onFocus={() => setIsTextBoxFocused(true)}
-					onBlur={() => setIsTextBoxFocused(false)}
-				/>
-				))}
-			</div>
+				<div className='left-sidebar'>
+					<TabContent activeTab={activeTab} />
+				</div>
+				<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
+					<DropZone onDrop={handleDrop} />
+					{textBoxes.map((box) => (
+					<TextBox
+						key={box.id}
+						id={box.id}
+						text={box.text}
+						x={box.x}
+						y={box.y}
+						onTextChange={handleTextChange}
+						onSelect={() => setSelectedBoxId(box.id)}
+						onFocus={() => setIsTextBoxFocused(true)}
+						onBlur={() => setIsTextBoxFocused(false)}
+					/>
+					))}
+				</div>
+				<div className='comment-area'></div>
+							
+				<div className='slide-list'>
+					<div className="slide-item"></div>
+					<div className="slide-item"></div>
+					<div className="slide-item"></div>
+				</div>
+				{/* 発表原稿を記述する棚 */}
+        <div className="footer"></div>
 			</div>
 		</div>
 		</DndProvider>
