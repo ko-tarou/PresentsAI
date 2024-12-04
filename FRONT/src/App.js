@@ -1,15 +1,20 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react'; // useState を正しくインポート
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import TopPage from './pages/TopPage/TopPage.js';
 import SlideView from './pages/SlideView/SlideView.js';
 import SlidePage from './pages/SlidePage/SlidePage.js';
 import PresenPage from './pages/PresenPage/PresenPage.js';
-import './components/button/ButtonHint/ButtonHint.js'
+import ButtonHint from './components/button/ButtonHint/ButtonHint.js'; // 正しくインポート
+
 const Header = () => {
   const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false); // useState を使用
 
-  return ( // JSX を返す
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  return (
     <header>
       <nav>
         <Link to="/">TopPage</Link>
@@ -22,6 +27,7 @@ const Header = () => {
           <button className="search-button">検索</button>
         </div>
       )}
+      <ButtonHint isModalOpen={isModalOpen} openModal={openModal} closeModal={closeModal} />
     </header>
   );
 };
