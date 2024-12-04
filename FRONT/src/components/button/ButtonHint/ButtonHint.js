@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose }) => {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="modal-close-button" onClick={onClose}>×</button>
-                <h2>説明書</h2>
+                <h3>説明書</h3>
                 <p>使い方ここに書く（行によって×ボタンの位置変更いる）</p>
             </div>
         </div>
