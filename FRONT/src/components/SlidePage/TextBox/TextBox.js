@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
+import { ItemTypes } from '../DropZone/ItemTypes.js';
+
 
 
 function TextBox({ id, text, x, y, onTextChange, onSelect, onFocus, onBlur }) {
