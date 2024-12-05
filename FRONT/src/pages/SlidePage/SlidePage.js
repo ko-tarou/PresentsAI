@@ -87,7 +87,7 @@ function Slidepage() {
             ))}
           </div>
           
-          <div className='comment-area'></div>
+            <div className='comment-area'>memo</div>
             
           <div className='slide-list'>
             <div className="slide-item"></div>
@@ -96,8 +96,6 @@ function Slidepage() {
           </div>
         </div>
 
-        {/* 発表原稿を記述する棚 */}
-        <div className="footer"></div>
       </div>
     </DndProvider>
   );
