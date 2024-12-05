@@ -40,7 +40,7 @@
 /* 右サイドバー */
 .slide-list {
   grid-column: 3 / 4;
-  grid-row: 1 / 2; /* 1行目に配置 */
+  grid-row: 1 / 3; /* 1行目に配置 */
   display: flex;
   flex-direction: column;
   gap: 5%;
