@@ -1,13 +1,45 @@
-/* 通常の枠線 */
-.clickable-text {
-    border: 1px solid #ccc;
-    padding: 5px;
-    min-height: 10px;
+/* 全体の横並び配置 */
+.slide-container {
+    display: flex;            /* 横方向に要素を並べる */
+    flex-flow: column;
+    justify-content: space-around; /* 均等に配置 */
+    align-items: center;      /* 垂直方向を中央揃え */
+    gap: 5%;                /* 各ボックス間の間隔 */
+    overflow-x: auto;         /* 横スクロールを可能にする */
+    padding: 20px;
+    background-color: transparent; /* 背景色を設定 */
+    height: 55vh;            /* ビューポート高さを使用 */
+    scrollbar-width: none;
+    }
+    
+    /* 個々のボックスのスタイル */
+    .clickable-text {
+    padding:10px;
+    min-height: 90px;
+    min-width: 160px;
     cursor: pointer;
-    outline: none; /* デフォルトのフォーカスリングを消す */
-  }
-  
-  /* フォーカス時に枠線を太くする */
-  .clickable-text:focus {
-    border: 2px solid #000000; /* 青い太めの枠線 */
-  }
+    outline: none;
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .clickable-text:hover {
+    transform: scale(1.05);  /* ホバー時に拡大 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    .clickable-text:focus {
+    border: 2px solid #000;
+    }
+    
+    .add-box-button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: transparent;
+        border: 1px solid #000;;
+        border-radius: 5px;
+      }
