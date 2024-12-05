@@ -22,9 +22,9 @@ function AnalysisPage() {
     datasets: [
 		{
 			label: '分析結果',
-        	data: [80, 65, 90, 70, 85], // 各項目のスコア
-        	backgroundColor: 'rgba(52, 58, 64, 0.1)', // 塗りつぶしの色
-        	borderColor: 'rgba(52, 58, 64, 1)', // 線の色
+        	data: [80, 65, 90, 70, 85],
+        	backgroundColor: 'rgba(52, 58, 64, 0.1)',
+        	borderColor: 'rgba(52, 58, 64, 1)',
 			borderWidth: 2,
         },
     ],
@@ -34,15 +34,15 @@ const options = {
     responsive: true,
     scales: {
 		r: {
-        	angleLines: { color: '#ddd' }, // 軸の線の色
-        	grid: { color: '#eee' }, // 背景グリッド線の色
-        	ticks: { display: false }, // 軸目盛りの非表示
-        	beginAtZero: true, // 0から始める
+        	angleLines: { color: '#ddd' },
+        	grid: { color: '#eee' },
+			ticks: { display: false },
+			beginAtZero: true,
 		},
     },
     plugins: {
 		legend: {
-        	position: 'top', // 凡例の位置
+        	position: 'top',
 			},
     },
 };
@@ -50,7 +50,9 @@ const options = {
 return (
 	<div class="box2-8">
 		<div className="AnalysisPage">
-			<h2>✔ 結果発表</h2>
+			<div className="result">
+				<h2>✔ 結果発表</h2>
+			</div>
 			<div className="content">
 				<div className="description">
 					<h3>項目の説明</h3>
