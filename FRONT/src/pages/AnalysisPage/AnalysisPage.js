@@ -23,8 +23,8 @@ function AnalysisPage() {
 		{
 			label: '分析結果',
         	data: [80, 65, 90, 70, 85], // 各項目のスコア
-        	backgroundColor: 'rgba(0, 123, 255, 0.2)', // 塗りつぶしの色
-        	borderColor: 'rgba(0, 123, 255, 1)', // 線の色
+        	backgroundColor: 'rgba(52, 58, 64, 0.1)', // 塗りつぶしの色
+        	borderColor: 'rgba(52, 58, 64, 1)', // 線の色
 			borderWidth: 2,
         },
     ],
