@@ -1,15 +1,16 @@
 import './App.css';
-import React, { useState } from 'react'; // useState を正しくインポート
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import TopPage from './pages/TopPage/TopPage.js';
 import SlideView from './pages/SlideView/SlideView.js';
 import SlidePage from './pages/SlidePage/SlidePage.js';
 import PresenPage from './pages/PresenPage/PresenPage.js';
-import ButtonHint from './components/button/ButtonHint/ButtonHint.js'; // 正しくインポート
+import ButtonHint from './components/button/ButtonHint/ButtonHint.js';
+import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
 
 const Header = () => {
   const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false); // useState を使用
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -41,6 +42,7 @@ function App() {
         <Route path="/slideview" element={<SlideView />} />
         <Route path="/slidepage" element={<SlidePage />} />
         <Route path="/presen" element={<PresenPage />} />
+        <Route path="/Ana" element={<AnalysisPage />} />
       </Routes>
     </Router>
   );
