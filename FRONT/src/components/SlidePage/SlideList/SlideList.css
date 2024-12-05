@@ -1,0 +1,13 @@
+/* 通常の枠線 */
+.clickable-text {
+    border: 1px solid #ccc;
+    padding: 5px;
+    min-height: 10px;
+    cursor: pointer;
+    outline: none; /* デフォルトのフォーカスリングを消す */
+  }
+  
+  /* フォーカス時に枠線を太くする */
+  .clickable-text:focus {
+    border: 2px solid #000000; /* 青い太めの枠線 */
+  }
