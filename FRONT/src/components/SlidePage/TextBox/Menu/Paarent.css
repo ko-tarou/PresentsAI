@@ -1,0 +1,36 @@
+/* 親要素のスタイル */
+.Parent.ParentBox {
+font-weight: bold;
+position: relative;
+width: 100vw;
+height: 100vh;
+background-color: #FFFFFF;
+border: 1px solid #000000;
+}
+
+/* メニュー要素のスタイル
+position: absoluteにしないと、指定した場所に表示できないのでご注意を。 */
+.Parent.MenuBox {
+position: absolute;
+margin: 0px;
+padding: 5px;
+font-size: 10px;
+font-weight: thin;
+width: 100px;
+background-color: #888888;
+color: #000000;
+visibility: hidden;
+border-radius: 5px;
+}
+
+/* focusをあてたときに周りが光らないようにしました。(気分の問題) */
+.Parent.MenuBox:focus {
+outline: none;
+}
+
+/* メニューにマウスポインタが乗っかった時のスタイルです。 */
+.Parent.MenuItem:hover {
+cursor: pointer;
+background-color: #E0E0FF;
+}
+
