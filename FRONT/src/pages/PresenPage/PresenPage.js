@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 function PresenPage() {
 	const containerRef = useRef(null); // 全画面にする要素を参照
-
+	
 	// フルスクリーンにする関数
 	const enterFullscreen = () => {
 		if (containerRef.current) {
@@ -43,6 +43,13 @@ function PresenPage() {
 				backgroundColor: '#f4f4f4',
 			}}
 		>
+			
+			<div>
+				<h2>メッセージ</h2>
+				<ul>
+					
+				</ul>
+			</div>
 			{/* 緑の四角 */}
 			<div
 				style={{
