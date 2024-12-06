@@ -8,6 +8,7 @@ import PresenPage from './pages/PresenPage/PresenPage.js';
 import ButtonHint from './components/button/ButtonHint/ButtonHint.js';
 import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
 import ButtonSave from './components/button/ButtonSave/ButtonSave.js';
+import WaitPage from './pages/WaitPage/WaitPage.js';
 
 const Header = () => {
   const location = useLocation();
@@ -48,6 +49,7 @@ function App() {
         <Route path="/slidepage" element={<SlidePage />} />
         <Route path="/presen" element={<PresenPage />} />
         <Route path="/Ana" element={<AnalysisPage />} />
+        <Route path="/Wait" element={<WaitPage />} />
       </Routes>
     </Router>
   );
