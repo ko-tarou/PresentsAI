@@ -7,6 +7,7 @@ import SlidePage from './pages/SlidePage/SlidePage.js';
 import PresenPage from './pages/PresenPage/PresenPage.js';
 import ButtonHint from './components/button/ButtonHint/ButtonHint.js';
 import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
+import ButtonSave from './components/button/ButtonSave/ButtonSave.js';
 
 const Header = () => {
   const location = useLocation();
@@ -28,6 +29,10 @@ const Header = () => {
           <button className="search-button">検索</button>
         </div>
       )}
+      {['/slidepage/'].includes(location.pathname) && (
+        <ButtonSave />
+      )}
+      
       <ButtonHint isModalOpen={isModalOpen} openModal={openModal} closeModal={closeModal} />
     </header>
   );
