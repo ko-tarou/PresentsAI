@@ -3,17 +3,15 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: #ffffff;
-    padding: 5px 15px;
+    padding: 10px; /* 上下に10px、左右に15pxの余白を追加 */
     border-bottom: 1px solid #ddd;
-    height: 7vh;
-    position: fixed; /* ヘッダーを固定する */
+    height: 8vh; /* ヘッダーの高さを画面の7%に指定 */
     top: 0; /* 上部から配置の基準位置を決める */
-     left: 0; /* 左から配置の基準位置を決める */
-    width: 100%; /* ヘッダーの横幅を指定する */
-    height: 35px; /* ヘッダーの高さを指定する */
- padding: 10px; /* ヘッダーの余白を指定する(上下左右) */
-    color: #000000; /* フォントの色を指定する */
+    left: 0; /* 左から配置の基準位置を決める */
+    z-index: 1000; /* 他の要素より上に表示 */
+    color: #000000; /* フォントの色を指定 */
 }
+
 
 nav {
     display: flex;
@@ -24,6 +22,7 @@ nav {
 nav a {
     text-decoration: none;
     font-size: 120%;
+    font-family: 'Arial', sans-serif;
     color: #333;
     padding: 5% 12%;
     transition: color 0.3s ease, background-color 0.3s ease;
