@@ -7,6 +7,8 @@ import DropZone from '../../components/SlidePage/DropZone/DropZone.js';
 import TextBox from '../../components/SlidePage/TextBox/TextBox.js';
 import { io } from "socket.io-client";
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
+import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
+
 const socket = io("https://1d32-202-13-166-100.ngrok-free.app"); // サーバーのURLに合わせて変更
 
 
@@ -39,6 +41,11 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 					// 新規のテキストボックスを追加
 					return [...prevBoxes, updatedBox];
 				}
+				prevTextBoxes.map((box) =>
+					box.id === selectedBoxId
+						? { ...box, fontSize: (box.fontSize || 16) + 1 } // デフォルト値を追加
+						: box
+				)
 			});
 		});
 
@@ -97,6 +104,21 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 		);
 	};
 
+	const increaseFontSize = () => {
+  setTextBoxes((prevTextBoxes) => {
+    const updatedBoxes = prevTextBoxes.map((box) =>
+      box.id === selectedBoxId
+        ? { ...box, fontSize: (box.fontSize || 16) + 1 } // デフォルト16を適用
+        : box
+    );
+    const selectedBox = updatedBoxes.find((box) => box.id === selectedBoxId);
+    if (socket && selectedBox) {
+      socket.emit("updateTextBox", selectedBox); // 必要なデータを送信
+    }
+    return updatedBoxes;
+  });
+};
+
 	return (
 		<DndProvider backend={HTML5Backend}>
 		<div className='slide-page'>
@@ -112,21 +134,28 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 					socket={socket}
 					setSelectedBoxId={setSelectedBoxId}
 				/>
-				
+				<FontSize
+					selectedBoxId={selectedBoxId}
+					isTextBoxFocused={isTextBoxFocused}
+					setTextBoxes={setTextBoxes}
+					socket={socket} // 必要に応じて WebSocket を設定
+					setSelectedBoxId={setSelectedBoxId}
+				/>
 					<DropZone onDrop={handleDrop} />
-					{textBoxes.map((box) => (
-					<TextBox
-						key={box.id}
-						id={box.id}
-						text={box.text}
-						x={box.x}
-						y={box.y}
-						onTextChange={handleTextChange}
-						onSelect={() => setSelectedBoxId(box.id)}
-						onFocus={() => setIsTextBoxFocused(true)}
-						onBlur={() => setIsTextBoxFocused(false)}
-					/>
-					))}
+				{textBoxes.map((box) => (
+			<TextBox
+				key={box.id}
+				id={box.id}
+				text={box.text}
+				x={box.x}
+				y={box.y}
+				fontSize={box.fontSize} 
+				onTextChange={handleTextChange}
+				onSelect={() => setSelectedBoxId(box.id)}
+				onFocus={() => setIsTextBoxFocused(true)}
+				onBlur={() => setIsTextBoxFocused(false)}
+			/>
+			))}
 				</div>
 				<div className='comment-area'></div>
 							
