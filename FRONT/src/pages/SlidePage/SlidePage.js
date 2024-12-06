@@ -128,19 +128,19 @@ function Slidepage() {
 				/>
 					<DropZone onDrop={handleDrop} />
 				{textBoxes.map((box) => (
-			<TextBox
-				key={box.id}
-				id={box.id}
-				text={box.text}
-				x={box.x}
-				y={box.y}
-				fontSize={box.fontSize} 
-				onTextChange={handleTextChange}
-				onSelect={() => setSelectedBoxId(box.id)}
-				onFocus={() => setIsTextBoxFocused(true)}
-				onBlur={() => setIsTextBoxFocused(false)}
-			/>
-			))}
+				<TextBox
+					key={box.id}
+					id={box.id}
+					text={box.text}
+					x={box.x}
+					y={box.y}
+					fontSize={box.fontSize} 
+					onTextChange={handleTextChange}
+					onSelect={() => setSelectedBoxId(box.id)}
+					onFocus={() => setIsTextBoxFocused(true)}
+					onBlur={() => setIsTextBoxFocused(false)}
+				/>
+				))}
 				</div>
 				<div className='comment-area'></div>
 							
