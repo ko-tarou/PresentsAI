@@ -1,0 +1,50 @@
+/* 視聴者ビューのスタイル */
+.viewer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5; /* 背景色 */
+    text-align: center;
+  }
+  
+  /* スライドのテキストのスタイル */
+  .slide-content {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* 操作ボタンのスタイル（フルスクリーンボタン） */
+  .controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  /* フルスクリーン時に表示されるツールバー */
+  .toolbar {
+    display: none; /* 初期状態では非表示 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    z-index: 9999; /* ツールバーが前面に表示されるように */
+  }
+  
+  .toolbar button {
+    color: white;
+    background-color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .toolbar button:hover {
+    background-color: #555;
+  }
+  
