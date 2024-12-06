@@ -1,33 +1,59 @@
-/* 全画面表示ボタン */
 .fullscreen-button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
   .fullscreen-button:hover {
-    background-color: #0056b3;
+    background-color: #0056B3;
   }
-  
   /* プレゼンテーションのコンテナ */
   .presen-container {
     padding: 20px;
     text-align: center;
   }
-  
+  /* スライドのスタイル */
+  .slide-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .slide {
+    width: 80vw; /* 画面幅の80% */
+    height: 45vw; /* 16:9 のアスペクト比 */
+    background-color: #222;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+  }
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* スライドの全画面モード */
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  }
   /* タスクバーのスタイル */
   .taskbar {
-    position: fixed;
+    position: absolute; /* スライド内で相対位置 */
     bottom: 0;
     left: 0;
     width: 100%;
     height: 50px;
-    background-color: rgba(51, 51, 51, 0.8);  /* 半透明の黒 */
+    background-color: rgba(51, 51, 51, 0.8); /* 半透明の黒 */
     color: white;
     display: flex;
     align-items: center;
@@ -35,34 +61,20 @@
     padding: 0 20px;
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
     font-size: 14px;
-  
-    /* 初期状態は隠れている */
-    transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* ぬるっとしたアニメーション */
+    transform: translateY(100%); /* 初期状態は隠れている */
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* アニメーション */
   }
-  
-  /* タスクバーが表示されるとき */
   .taskbar-visible {
     transform: translateY(0); /* スライドイン */
   }
-  
-  /* タスクバーが隠れるとき */
   .taskbar-hidden {
     transform: translateY(100%); /* スライドアウト */
   }
-  
-  /* タスクバーのアイテム */
   .taskbar-item {
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
   .taskbar-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  
-  .taskbar-item:first-child {
-    font-weight: bold;
-  }
-  
