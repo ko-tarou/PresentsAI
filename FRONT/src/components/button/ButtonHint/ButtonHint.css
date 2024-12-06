@@ -4,13 +4,14 @@
 
 .circle-button {
     right: 4%;
-    top: 10%;
+    top: 3%;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #7e8894;
     color: white;
     font-size: 20px;
+    font-family: 'Arial', sans-serif;
     border: none;
     display: flex;
     justify-content: center;
