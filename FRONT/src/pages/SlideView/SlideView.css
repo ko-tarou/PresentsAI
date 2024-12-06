@@ -1,8 +1,8 @@
 .SlideView {
     display: flex;
     flex-direction: row;
-    height: 100vh;
-    
+    overflow: auto;
+    height: 88vh;
 }
 
 .leftside {

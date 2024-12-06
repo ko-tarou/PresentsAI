@@ -1,26 +1,26 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './TopPage.css'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./TopPage.css";
+import ButtonLine from "../../components/button/ButtonLine/ButtonLine";
 
 function TopPage() {
   const navigate = useNavigate();
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-section left"></div>
-        <div className="header-section center"></div>
-        <button className="header-section right">?</button>
-      </header>
       <main className="main">
         <h1 className="title">PresentsAI</h1>
         <div className="buttons">
-          <button className="button" onClick={() => navigate('/slideview')}>
+          {/* 各ボタンを独立して縦に配置 */}
+          <ButtonLine onClick={() => navigate("/slideview")}>
             作ったスライドを見る
-          </button>
-          <button className="button" onClick={() => navigate('/presen')}>
-            新規作成 
-          </button>
+          </ButtonLine>
+          <ButtonLine onClick={() => navigate("/presen")}>
+            発表
+          </ButtonLine>
+          <ButtonLine onClick={() => navigate("/slidepage")}>
+            スライドを作成
+          </ButtonLine>
         </div>
       </main>
     </div>

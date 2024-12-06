@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 function PresenPage() {
 	const containerRef = useRef(null); // 全画面にする要素を参照
-
+	
 	// フルスクリーンにする関数
 	const enterFullscreen = () => {
 		if (containerRef.current) {
