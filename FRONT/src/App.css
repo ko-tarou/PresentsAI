@@ -25,14 +25,26 @@ nav a {
     font-family: 'Arial', sans-serif;
     color: #333;
     padding: 5% 12%;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 25px;
+    transition: color 0.3s ease;
+    position: relative;
 }
 
-nav a:hover {
-    color: #fff;
-    background-color: #ba5959;
-    border-radius: 25px;
+
+/* ホバー時の下線アニメーション */
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* 下線をテキストの真下に配置 */
+    left: 50%;
+    height: 5%; /* 下線の太さ */
+    width: 100%; /* 実際の幅は全体 */
+    transform: translateX(-50%) scaleX(0); /* 中央から始まり、横幅をゼロに */
+    background-color: #ba5959; /* 下線の色 */
+    transition: width 0.4s ease; /* スムーズなアニメーション */
+}
+
+nav a:hover::after {
+    transform: translateX(-50%) scaleX(1); /* ホバー時にフル幅に拡大 */
 }
 
 nav a:active {
