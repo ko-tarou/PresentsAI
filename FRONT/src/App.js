@@ -9,6 +9,7 @@ import ButtonHint from './components/button/ButtonHint/ButtonHint.js';
 import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
 import ButtonSave from './components/button/ButtonSave/ButtonSave.js';
 import WaitPage from './pages/WaitPage/WaitPage.js';
+import Audio from './pages/audio/AudioRecognition.js';
 
 const Header = () => {
   const location = useLocation();
@@ -50,6 +51,7 @@ function App() {
         <Route path="/presen" element={<PresenPage />} />
         <Route path="/Ana" element={<AnalysisPage />} />
         <Route path="/Wait" element={<WaitPage />} />
+        <Route path="/audio" element={<Audio />} />
       </Routes>
     </Router>
   );
