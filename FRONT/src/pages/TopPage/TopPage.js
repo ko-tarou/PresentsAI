@@ -12,9 +12,15 @@ function TopPage() {
         <h1 className="title">PresentsAI</h1>
         <div className="buttons">
           {/* 各ボタンを独立して縦に配置 */}
-          <ButtonLine>作ったスライドを見る</ButtonLine>
-          <ButtonLine>発表</ButtonLine>
-          <ButtonLine>スライドを作成</ButtonLine>
+          <ButtonLine onClick={() => navigate("/slideview")}>
+            作ったスライドを見る
+          </ButtonLine>
+          <ButtonLine onClick={() => navigate("/presen")}>
+            発表
+          </ButtonLine>
+          <ButtonLine onClick={() => navigate("/slidepage")}>
+            スライドを作成
+          </ButtonLine>
         </div>
       </main>
     </div>
