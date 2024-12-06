@@ -38,6 +38,7 @@ function Slidepage() {
 			text: item.text || `TextBox ${newId}`,
 			x: position.x,
 			y: position.y,
+			fontSize: 16,
 			};
 			return [...prevBoxes, newBox];
 		}
@@ -134,7 +135,7 @@ function Slidepage() {
 					text={box.text}
 					x={box.x}
 					y={box.y}
-					fontSize={box.fontSize} 
+					fontSize={box.fontSize || 16}
 					onTextChange={handleTextChange}
 					onSelect={() => setSelectedBoxId(box.id)}
 					onFocus={() => setIsTextBoxFocused(true)}

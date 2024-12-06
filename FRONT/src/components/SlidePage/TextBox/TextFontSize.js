@@ -5,14 +5,12 @@ function FontSize({
     selectedBoxId,
     isTextBoxFocused,
     setTextBoxes,
-    socket,
-    setSelectedBoxId,
 }) {
     const increaseFontSize = () => {
         setTextBoxes((prevTextBoxes) =>
-            prevTextBoxes.map((box, index) =>
-                index === selectedBoxId
-                    ? { ...box, fontSize: box.fontSize + 1 }
+            prevTextBoxes.map((box) =>
+                box.id === selectedBoxId
+                    ? { ...box, fontSize: (box.fontSize || 16) + 1 }
                     : box
             )
         );
@@ -20,9 +18,9 @@ function FontSize({
 
     const decreaseFontSize = () => {
         setTextBoxes((prevTextBoxes) =>
-            prevTextBoxes.map((box, index) =>
-                index === selectedBoxId
-                    ? { ...box, fontSize: box.fontSize - 1 }
+            prevTextBoxes.map((box) =>
+                box.id === selectedBoxId
+                    ? { ...box, fontSize: Math.max((box.fontSize || 16) - 1, 1) }
                     : box
             )
         );
