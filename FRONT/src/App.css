@@ -40,7 +40,7 @@ nav a::after {
     width: 100%; /* 実際の幅は全体 */
     transform: translateX(-50%) scaleX(0); /* 中央から始まり、横幅をゼロに */
     background-color: #ba5959; /* 下線の色 */
-    transition: width 0.4s ease; /* スムーズなアニメーション */
+    transition: transform 0.4s ease-in-out;/* スムーズなアニメーション */
 }
 
 nav a:hover::after {
@@ -49,13 +49,10 @@ nav a:hover::after {
 
 nav a:active {
     transform: scale(0.95);
-    background-color: #007b00;
     color: #fff;
 }
 
 nav a:focus {
-    background-color: #8a4040;
-    color: #fff;
     outline: none; 
     transform: scale(1.05);
 }
