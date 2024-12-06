@@ -10,7 +10,7 @@ body, html {
   
   .app {
     display: flex;
-    height: 91vh;
+    height: 88vh;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -44,7 +44,5 @@ body, html {
     display: flex;
     flex-direction: column; /* ボタンを縦に並べる */
     align-items: center;    /* 中央揃え */
-    margin-top: 5%;
-    gap: 4.0rem; /* ボタン間の余白を調整 */
-    padding-top: 5%;
+    gap: 3.0rem; /* ボタン間の余白を調整 */
   }
