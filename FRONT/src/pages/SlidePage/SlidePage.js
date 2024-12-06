@@ -6,7 +6,7 @@ import TabContent from "../../components/Tab/TabContent.js";
 import DropZone from '../../components/SlidePage/DropZone/DropZone.js';
 import TextBox from '../../components/SlidePage/TextBox/TextBox.js';
 import { io } from "socket.io-client";
-
+import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 const socket = io("https://1d32-202-13-166-100.ngrok-free.app"); // サーバーのURLに合わせて変更
 
 
@@ -97,19 +97,6 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 		);
 	};
 
-	const handleKeyDown = useCallback((event) => {
-		if (event.key === 'Backspace' && selectedBoxId !== null && !isTextBoxFocused) {
-			setTextBoxes((prevBoxes) => prevBoxes.filter((box) => box.id !== selectedBoxId));
-			socket.emit("deleteTextBox", selectedBoxId); // サーバーに削除を通知
-			setSelectedBoxId(null);
-		}
-	}, [selectedBoxId, isTextBoxFocused]);
-
-	useEffect(() => {
-		window.addEventListener('keydown', handleKeyDown);
-		return () => window.removeEventListener('keydown', handleKeyDown);
-	}, [handleKeyDown]);
-
 	return (
 		<DndProvider backend={HTML5Backend}>
 		<div className='slide-page'>
@@ -118,6 +105,14 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 					<TabContent activeTab={activeTab} />
 				</div>
 				<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
+				<KeyboardHandler
+					selectedBoxId={selectedBoxId}
+					isTextBoxFocused={isTextBoxFocused}
+					setTextBoxes={setTextBoxes}
+					socket={socket}
+					setSelectedBoxId={setSelectedBoxId}
+				/>
+				
 					<DropZone onDrop={handleDrop} />
 					{textBoxes.map((box) => (
 					<TextBox
@@ -141,7 +136,7 @@ const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 					<div className="slide-item"></div>
 				</div>
 				{/* 発表原稿を記述する棚 */}
-        <div className="footer"></div>
+		<div className="footer"></div>
 			</div>
 		</div>
 		</DndProvider>
