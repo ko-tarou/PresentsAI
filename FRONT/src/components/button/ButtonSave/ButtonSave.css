@@ -1,44 +1,56 @@
 .save-button {
-  padding: 12px 24px;
-  background: linear-gradient(90deg, #a82e2c, #a82e2c);
-  color: white;
-  font-size: 16px;
-  font-weight: bold; 
-  border: none;
-  border-radius: 8px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease; 
+  display: flex;
+  align-items: center;
+  gap: 20%;
+}
+
+.save-button {
+  text-decoration: none;
+  font-size: 120%;
+  color: #333;
+  background-color: #fff;
+  padding: 10px 13px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 25px;
+  border: none; /* ボーダーを削除 */
+  outline: none;
+  margin-left: 700px;
 }
 
 .save-button:hover {
-  background: linear-gradient(90deg, #d32f2f, #f44336);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+  color: #fff;
+  background-color: #ba5959;
+  border-radius: 25px;
 }
 
 .save-button:active {
-  background: linear-gradient(90deg, #c62828, #e53935); 
   transform: scale(0.95);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #fff;
 }
 
+.save-button:focus {
+  background-color: #8a4040;
+  color: #fff;
+  outline: none; 
+  transform: scale(1.05);
+}
 
 .save-message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px 40px;
-    border-radius: 8px;
-    font-size: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(168, 163, 163, 0.1);
-    z-index: 1000;
-    animation: fadeInOut 3s forwards;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-family: 'Meiryo';
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(168, 163, 163, 0.1);
+  z-index: 1000;
+  animation: fadeInOut 3s forwards;
+}
   
 @keyframes fadeInOut {
   0% {
