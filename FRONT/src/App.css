@@ -1,0 +1,92 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 10px; /* 上下に10px、左右に15pxの余白を追加 */
+    border-bottom: 1px solid #ddd;
+    height: 8vh; /* ヘッダーの高さを画面の7%に指定 */
+    top: 0; /* 上部から配置の基準位置を決める */
+    left: 0; /* 左から配置の基準位置を決める */
+    z-index: 1000; /* 他の要素より上に表示 */
+    color: #000000; /* フォントの色を指定 */
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20%;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 120%;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 5% 12%;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+
+/* ホバー時の下線アニメーション */
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* 下線をテキストの真下に配置 */
+    left: 50%;
+    height: 5%; /* 下線の太さ */
+    width: 100%; /* 実際の幅は全体 */
+    transform: translateX(-50%) scaleX(0); /* 中央から始まり、横幅をゼロに */
+    background-color: #ba5959; /* 下線の色 */
+    transition: transform 0.4s ease-in-out;/* スムーズなアニメーション */
+}
+
+nav a:hover::after {
+    transform: translateX(-50%) scaleX(1); /* ホバー時にフル幅に拡大 */
+}
+
+nav a:active {
+    transform: scale(0.95);
+    color: #fff;
+}
+
+nav a:focus {
+    outline: none; 
+    transform: scale(1.05);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto; 
+    margin-right: 10%;
+}
+
+.search-field {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.search-button {
+    padding: 5px 16px; 
+    background-color: #808080;
+    color: rgb(216, 216, 216); 
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s; 
+}
+
+.search-button:hover {
+    background-color: #696a6b; 
+}
+
+.search-button:active {
+    transform: scale(0.9); 
+    background-color: #393a3b; 
+}
