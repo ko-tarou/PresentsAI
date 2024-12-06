@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import TextBox from "./TextBox";
 
 function FontSize({
     selectedBoxId,
