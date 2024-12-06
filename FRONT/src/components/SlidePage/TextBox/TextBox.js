@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../DropZone/ItemTypes.js';
 
-
-
-function TextBox({ id, text, x, y, onTextChange, onSelect, onFocus, onBlur }) {
+function TextBox({ id, text, x, y, onTextChange, fontSize,onSelect, onFocus, onBlur }) {
 const [value, setValue] = useState(text || "");
 const [size, setSize] = useState({ width: 100, height: 50 });
 const [isEditing, setIsEditing] = useState(false); // 新しく追加
@@ -87,6 +85,7 @@ return (
 	style={{
 		width: `${size.width}px`,
 		height: `${size.height}px`,
+		fontSize: `${fontSize}px`,
 		opacity: isDragging ? 0.5 : 1,
 		padding: '10px',
 		border: '1px solid black',
@@ -109,6 +108,7 @@ return (
 			height: '100%',
 			border: 'none',
 			outline: 'none',
+			fontSize: `${fontSize || 16}px`,
 		}}
 		/>
 	) : (
