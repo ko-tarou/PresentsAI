@@ -9,7 +9,7 @@
 /* ヘッダー */
 .header {
   background-color: #2c3e50;
-  padding: 10px;
+  padding: 30px;
   text-align: center;
 }
 
@@ -21,6 +21,7 @@
   gap: 10px;
   padding: 5%;
   flex: 1;
+  margin-top: 30px; /* ヘッダーの高さ分だけ余白を追加 */
 }
 
 /* 左サイドバー */
@@ -61,7 +62,6 @@
   flex-direction: column;
   height: 100vh;
 }
-
 
 .comment-area {
   background-color: #818db5b9;
