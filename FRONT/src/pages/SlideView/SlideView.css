@@ -73,7 +73,6 @@ body {
     width: 100%;
     max-width: none;
     margin-left: 5%;
-    
 }
 
 /* 各ボックス */
@@ -82,22 +81,15 @@ body {
     border-radius: 4px;
     aspect-ratio: 16 / 9;
     width: 90%;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 影をつけて浮いている感じを出す */
-    transform: translateY(-4px); /* 少し上に浮かせる */
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* アニメーションで動きを加える */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 /* ホバー時の効果を加える */
 .box:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* さらに大きな影をつけて強調 */
     transform: translateY(-6px); /* 少し浮き上がった感じを強調 */
-}
-
-body{
-    margin: 0;
-    padding: 0;
-    overflow: auto; 
-    height: 100%;
 }
 
 .button {
@@ -107,6 +99,7 @@ body{
     cursor: pointer;
     transition: transform 0.2s;
 }
+
 .button-group {
     text-align: right;
     margin-right: 10%;
@@ -127,13 +120,14 @@ body{
     outline: none;
     transition: box-shadow 0.3s ease;
 }
+
 .box-name-input:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     background-color: #ffffff88;
 }
-.box.highlight {
-    box-shadow: 0 0 10px 5px rgba(255, 165, 0, 0.8); /* オレンジ色の光 */
-    border-radius: 8px; /* 角を少し丸める */
-    transition: box-shadow 0.3s ease; /* 滑らかなアニメーション */
-}
 
+.box.highlight {
+    box-shadow: 0 0 10px 5px rgba(255, 165, 0, 0.8);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
