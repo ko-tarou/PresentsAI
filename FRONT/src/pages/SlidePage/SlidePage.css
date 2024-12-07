@@ -64,3 +64,12 @@
   padding: 2%;
   font-family:Arial, Helvetica, sans-serif
 }
+
+
+.comment-area {
+  border: 1px solid #ccc; /* 枠線を追加 */
+  font-size: 16px; /* フォントサイズを指定 */
+  color: #333; /* テキストの色を黒にする */
+  outline: none; /* フォーカス時の青い枠線を消す */
+  overflow-y: auto; /* 縦方向のスクロールを有効化 */
+}
