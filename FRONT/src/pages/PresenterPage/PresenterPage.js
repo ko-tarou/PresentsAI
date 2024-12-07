@@ -135,26 +135,30 @@ const PresenterPage = () => {
           ここに横長のボックス内容を追加
         </div>
       </div>
+       {/* 音声認識ボタン */}
+      <div className="right-wrapper">
+        <div className="audio-buttons">
+          <button onClick={mediaRecordStart} disabled={status === 'recording'}>
+            音声認識開始
+          </button>
+          <button onClick={stopDetection} disabled={status !== 'recording'}>
+            音声認識終了
+          </button>
+        </div>
+      </div>
+      {/* 中央の比率16:9のボックス */}
+      <div className="middle-box">
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+      </div>
 
       {/* 右側のエリア */}
       <div className="right-area">
-        <h2>音声認識とChatGPT</h2>
-        <button onClick={mediaRecordStart} disabled={status === 'recording'}>音声認識開始</button>
-        <button onClick={stopDetection} disabled={status !== 'recording'}>音声認識終了</button>
-        <div>
-          <h3>認識結果:</h3>
-          <p>{transcript}</p>
-        </div>
-        <div>
-          <h3>相槌のカウント:</h3>
-          <p>{acknowledgmentCount}</p>
-        </div>
-        <div>
           <h3>ChatGPTの応答:</h3>
           <p>{response}</p>
         </div>
       </div>
-    </div>
   );
 };
 
