@@ -82,7 +82,6 @@ const PresenPage = () => {
 
   return (
     <div className="presen-container">
-      <h1>プレゼンテーション画面</h1>
       <button onClick={toggleSlideFullscreen} className="fullscreen-button">
         {isFullscreen ? '全画面表示を終了' : 'スライド全画面表示'}
       </button>
