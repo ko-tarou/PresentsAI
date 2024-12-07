@@ -32,7 +32,6 @@ const Header = () => {
       <nav>
         <Link to="/">TopPage</Link>
         <Link to="/slideview">SlideView</Link>
-        <Link to="/presen">Presen</Link>
       </nav>
       {['/slideview'].includes(location.pathname) && (
         <div className="search-container">

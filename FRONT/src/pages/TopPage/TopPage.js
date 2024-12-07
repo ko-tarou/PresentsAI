@@ -15,9 +15,6 @@ function TopPage() {
           <ButtonLine onClick={() => navigate("/slideview")}>
             作ったスライドを見る
           </ButtonLine>
-          <ButtonLine onClick={() => navigate("/presen")}>
-            発表
-          </ButtonLine>
           <ButtonLine onClick={() => navigate("/slidepage")}>
             スライドを作成
           </ButtonLine>
