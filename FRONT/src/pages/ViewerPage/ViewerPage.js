@@ -1,38 +1,18 @@
-import React, { useState, useRef } from 'react';
-import './ViewerPage.css'; // ここでCSSをインポート
+import React, { useRef } from 'react';
+import './ViewerPage.css'; // 必要に応じてCSSでスタイルを調整
 
 const ViewerPage = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false); // 全画面表示状態
   const imageRef = useRef(null); // 画像の参照
 
-  // 全画面表示を切り替える関数
-  const toggleFullscreen = () => {
-    if (isFullscreen) {
-      // 全画面モードを終了
-      document.exitFullscreen();
-    } else {
-      // 全画面表示
-      if (imageRef.current) {
-        imageRef.current.requestFullscreen();
-      }
-    }
-    setIsFullscreen(!isFullscreen); // 状態を更新
-  };
-
+  // ページを画像だけにするために画像以外の要素は削除
   return (
-    <div className={`viewer-container ${isFullscreen ? 'fullscreen' : ''}`}>
-      <h1>プレゼンテーションビューア</h1>
-      <button onClick={toggleFullscreen} className="fullscreen-button">
-        {isFullscreen ? '全画面表示を終了' : '全画面表示'}
-      </button>
-      <div className="image-container">
-        <img
-          ref={imageRef}
-          src="your-slide-image.jpg" // プレゼン用の画像を指定
-          alt="プレゼン画像"
-          className={`presentation-image ${isFullscreen ? 'fullscreen-image' : ''}`}
-        />
-      </div>
+    <div className="viewer-container">
+      <img
+        ref={imageRef}
+        src="/img/169.png" // プレゼン用の画像を指定
+        alt="プレゼン画像"
+        className="viewer-image"
+      />
     </div>
   );
 };

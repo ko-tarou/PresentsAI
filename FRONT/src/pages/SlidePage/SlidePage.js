@@ -10,6 +10,8 @@ import {
 	subscribeToTextBoxes,
 	updateTextBox,
 	deleteTextBox,
+	saveComment,
+	subscribeToComment,
 } from "../../firebase/realtimeService.js";
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
@@ -21,9 +23,25 @@ function Slidepage() {
 	const [textBoxes, setTextBoxes] = useState([]); // テキストボックスのデータ
 	const [selectedBoxId, setSelectedBoxId] = useState(null); // 選択されているボックスID
 	const [isTextBoxFocused, setIsTextBoxFocused] = useState(false); // ボックスがフォーカス中か
+	const [comment, setComment] = useState(""); // コメントの内容
+	const [isTyping, setIsTyping] = useState(false); // ユーザーが入力中かどうかを管理
 	const mainSlideRef =useRef(null);
 
 	useEffect(() => {
+		const unsubscribe = subscribeToComment((fetchedComment) => {
+			if (!isTyping) {
+				setComment(fetchedComment);
+			}
+		});
+	
+		return () => {
+			console.log('Firebase listener解除');
+			unsubscribe();
+		};
+	}, [isTyping]);
+
+	useEffect(() => {
+
 		const unsubscribe = subscribeToTextBoxes((fetchedTextBoxes) => {
 			setTextBoxes(fetchedTextBoxes);
 	
@@ -141,8 +159,22 @@ function Slidepage() {
 					<div 
 						className='comment-area' 
 						contentEditable="true"
-						onInput={(e) => console.log(e.target.innerText)} // コメント入力（必要に応じて実装）
+						onInput={async (e) => {
+							const commentText = e.target.innerText.trim();
+							setIsTyping(true); // 入力中フラグを設定
+							try {
+								await saveComment(commentText);
+								console.log("コメントを保存しました:", commentText);
+							} catch (error) {
+								console.error("コメント保存中にエラーが発生:", error);
+							} finally {
+								// 入力が終了したらフラグを解除
+								setTimeout(() => setIsTyping(false), 1000);
+							}
+						}}
+						dangerouslySetInnerHTML={{ __html: comment }} // 初期値を設定
 					/>
+					
 
 					<div className='slide-list'>
 						<div className="slide-item"></div>

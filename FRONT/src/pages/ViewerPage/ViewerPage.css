@@ -1,49 +1,17 @@
-/* ViewerPageのベーススタイル */
 .viewer-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #000;
-    color: #fff;
-  }
-  
-  .fullscreen-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
-  
-  .fullscreen-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .image-container {
-    position: relative;
-    margin-top: 20px;
-  }
-  
-  .presentation-image {
-    max-width: 100%;
-    height: auto;
-    transition: all 0.3s ease; /* 画面サイズ変更時に滑らかに */
-  }
-  
-  /* 全画面表示時のスタイル */
-  .viewer-container.fullscreen {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .presentation-image.fullscreen-image {
-    width: 100vw;  /* 横幅100% */
-    height: 100vh; /* 高さ100% */
-    object-fit: contain; /* アスペクト比を保ちながら画像をフィットさせる */
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; /* ビューポートの幅をフルに使用 */
+  height: 100vh; /* ビューポートの高さをフルに使用 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 画像が画面外に溢れるのを防止 */
+  background-color: #000; /* 背景色を黒に設定（必要なら変更） */
+}
+
+.viewer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* アスペクト比を保持しつつ全体表示 */
+}
