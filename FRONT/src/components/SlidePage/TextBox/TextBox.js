@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../DropZone/ItemTypes.js';
+import ResizeHandle from './ResizeHandle'; // Import the new component
 
 function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, onBlur }) {
-	const [value, setValue] = useState(text || '');
-	const [size, setSize] = useState({ width: 100, height: 50 });
-	const [isEditing, setIsEditing] = useState(false);
+    const [value, setValue] = useState(text || '');
+    const [size, setSize] = useState({ width: 100, height: 50 });
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         setValue(text);
@@ -29,7 +30,7 @@ function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, on
 
     const handleBlur = () => setIsEditing(false);
 
-    const handleResize = (e, direction) => {
+    const handleResizeStart = (e, direction) => {
         e.stopPropagation();
         e.preventDefault();
 
@@ -64,6 +65,7 @@ function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, on
             onDoubleClick={handleDoubleClick}
             onFocus={onFocus}
             onBlur={onBlur}
+            className='text-box-wrapper'
             style={{
                 width: `${size.width}px`,
                 height: `${size.height}px`,
@@ -101,33 +103,14 @@ function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, on
 
             {/* リサイズハンドル */}
             {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((direction) => (
-                <div
+                <ResizeHandle
                     key={direction}
-                    onMouseDown={(e) => handleResize(e, direction)}
-                    style={resizeHandleStyle(direction)}
+                    direction={direction}
+                    onResizeStart={handleResizeStart}
                 />
             ))}
         </div>
     );
 }
-
-const resizeHandleStyle = (direction) => {
-    const baseStyle = {
-        position: 'absolute',
-        width: '8px',
-        height: '8px',
-        backgroundColor: 'gray',
-        cursor: `${direction.split('-').join('-')}-resize`,
-    };
-
-    const positionMap = {
-        'top-left': { top: '-4px', left: '-4px' },
-        'top-right': { top: '-4px', right: '-4px' },
-        'bottom-left': { bottom: '-4px', left: '-4px' },
-        'bottom-right': { bottom: '-4px', right: '-4px' },
-    };
-
-    return { ...baseStyle, ...positionMap[direction] };
-};
 
 export default TextBox;
