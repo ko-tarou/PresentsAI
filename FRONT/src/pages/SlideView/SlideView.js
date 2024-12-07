@@ -49,6 +49,17 @@ const SlideView = () => {
 
   // 検索ボタンがクリックされたときの処理
   const handleSearchClick = () => {
+    // 検索された名前と一致するボックスを先頭に並び替える
+    const matchedBoxes = boxes.filter(
+      (box) => box.name.toLowerCase() === searchQuery.toLowerCase()
+    );
+
+    const unmatchedBoxes = boxes.filter(
+      (box) => box.name.toLowerCase() !== searchQuery.toLowerCase()
+    );
+
+    // リストを再構成して表示
+    setBoxes([...matchedBoxes, ...unmatchedBoxes]);
     setIsSearched(true); // 検索実行フラグを立てる
   };
 
@@ -74,6 +85,8 @@ const SlideView = () => {
                 className={`box ${
                   isSearched && searchQuery !== "" && box.name === searchQuery
                     ? "highlight"
+                    : box.isPinned
+                    ? "highlight-pinned" // ピン留め時に光るスタイル
                     : ""
                 }`}
               >
@@ -108,3 +121,4 @@ const SlideView = () => {
 };
 
 export default SlideView;
+
