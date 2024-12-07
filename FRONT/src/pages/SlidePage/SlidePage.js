@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import "./SlidePage.css";
@@ -16,6 +16,7 @@ import {
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
 import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
+import domtoimage from 'dom-to-image';
 
 function Slidepage() {
 	const [activeTab, setActiveTab] = useState("tab1");
@@ -23,10 +24,9 @@ function Slidepage() {
 	const [selectedBoxId, setSelectedBoxId] = useState(null); // 選択されているボックスID
 	const [isTextBoxFocused, setIsTextBoxFocused] = useState(false); // ボックスがフォーカス中か
 	const [comment, setComment] = useState(""); // コメントの内容
-
-
 	const [isTyping, setIsTyping] = useState(false); // ユーザーが入力中かどうかを管理
-	
+	const mainSlideRef =useRef(null);
+
 	useEffect(() => {
 		const unsubscribe = subscribeToComment((fetchedComment) => {
 			if (!isTyping) {
@@ -56,7 +56,20 @@ function Slidepage() {
 		};
 	}, [selectedBoxId]);
 	
-
+	//画像保存するよ
+	const handleSaveImage = async () => {
+		if(mainSlideRef.current){
+			try{
+				const dataUrl = await domtoimage.toPng(mainSlideRef.current);
+				const link = document.createElement('a');
+				link.href = dataUrl;
+				link.download = 'main-slide.png';
+				link.click();
+				} catch (error) {
+					console.error('キャプチャエラー:', error);
+			}
+		}
+	};
 	// テキストボックスを移動
 	const handleBoxMove = async (id, newPosition) => {
 		await updateTextBox(id, { x: newPosition.x, y: newPosition.y });
@@ -103,16 +116,6 @@ function Slidepage() {
 		return () => window.removeEventListener('keydown', handleKeyDown);
 	}, [handleKeyDown]);
 
-	// フォントサイズの増加
-	const increaseFontSize = async () => {
-		if (selectedBoxId) {
-			const box = textBoxes.find((box) => box.id === selectedBoxId);
-			if (box) {
-				await updateTextBox(selectedBoxId, { fontSize: (box.fontSize || 16) + 1 });
-			}
-		}
-	};
-
 	return (
 		<DndProvider backend={HTML5Backend}>
 			<div className='slide-page'>
@@ -120,7 +123,11 @@ function Slidepage() {
 					<div className='left-sidebar'>
 						<TabContent activeTab={activeTab} />
 					</div>
-					<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
+						<div 
+							className='main-slide' 
+							tyle={{ position: 'relative', height: '100%' }}
+							ref={mainSlideRef}
+						>
 						<KeyboardHandler
 							selectedBoxId={selectedBoxId}
 							isTextBoxFocused={isTextBoxFocused}
