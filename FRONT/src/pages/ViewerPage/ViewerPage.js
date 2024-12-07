@@ -9,7 +9,7 @@ const ViewerPage = () => {
   
   // タスクバーの表示・非表示を制御
   useEffect(() => {
-    const handleMoseMove = (event) => {
+    const handleMouseMove = (event) => {
       if (event.clientY >= window.innerHeight - taskbarHeight) {
         setShowTaskbar(true); // マウスが下部にある場合タスクバーを表示
       } else {
