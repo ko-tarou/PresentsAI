@@ -75,11 +75,6 @@ function Slidepage() {
 				// 新規のテキストボックスを追加
 				return [...prevBoxes, updatedBox];
 			}
-			prevTextBoxes.map((box) =>
-				box.id === selectedBoxId
-					? { ...box, fontSize: (box.fontSize || 16) + 1 } // デフォルト値を追加
-					: box
-			)
 		});
 	});
 
@@ -94,22 +89,6 @@ function Slidepage() {
 		window.addEventListener('keydown', handleKeyDown);
 		return () => window.removeEventListener('keydown', handleKeyDown);
 	}, [handleKeyDown]);
-
-
-	const increaseFontSize = () => {
-		setTextBoxes((prevTextBoxes) => {
-			const updatedBoxes = prevTextBoxes.map((box) =>
-			box.id === selectedBoxId
-				? { ...box, fontSize: (box.fontSize || 16) + 1 } // デフォルト16を適用
-				: box
-			);
-			const selectedBox = updatedBoxes.find((box) => box.id === selectedBoxId);
-			if (socket && selectedBox) {
-			socket.emit("updateTextBox", selectedBox); // 必要なデータを送信
-			}
-			return updatedBoxes;
-		});
-	};
 
 	return (
 		<DndProvider backend={HTML5Backend}>
