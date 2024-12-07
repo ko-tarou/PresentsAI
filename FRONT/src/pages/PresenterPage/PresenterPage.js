@@ -8,6 +8,7 @@ const PresenterPage = () => {
   const imageRef = useRef(null);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [currentBoxId, setCurrentBoxId] = useState("box1"); // 画像を表示するボックスの管理
 
   useEffect(() => {
     const unsubscribe = subscribeToComment((retrievedComment) => {
@@ -45,6 +46,16 @@ const PresenterPage = () => {
     }
     return () => clearInterval(timer);
   }, [isRunning]);
+
+  const changeImageBox = () => {
+    if (currentBoxId === "box1") {
+    setCurrentBoxId("box2");
+    } else if (currentBoxId === "box2") {
+    setCurrentBoxId("box3");
+    } else {
+    setCurrentBoxId("box1");
+    }
+  };
 
   const [status, setStatus] = useState('init');
   const [transcript, setTranscript] = useState('');
@@ -150,6 +161,10 @@ const PresenterPage = () => {
           alt="プレゼン画像"
           className="presenter-image"
         />
+		  {/* ボタンで画像切り替え */}
+			<div className="change-image-button">
+				<button onClick={changeImageBox}>画像を変更</button>
+			</div>
         <div className="horizontal-box">
           {comment}
         </div>
@@ -166,18 +181,45 @@ const PresenterPage = () => {
         </div>
       </div>
       {/* 中央の比率16:9のボックス */}
-      <div className="middle-box">
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
+      <div className="middle-box">    
+	      <div className="box" id="box1">
+			    {currentBoxId === "box1" && (
+				    <img
+            ref={imageRef}
+            src="/img/169.png"
+            alt="プレゼン画像"
+            className="presenter-image"
+            />
+			    )}
+			</div>
+			<div className="box" id="box2">
+			  {currentBoxId === "box2" && (
+				<img
+          ref={imageRef}
+          src="/img/169.png"
+          alt="プレゼン画像"
+          className="presenter-image"
+				/>
+			)}
+			</div>
+			<div className="box" id="box3">
+			  {currentBoxId === "box3" && (
+          <img
+            ref={imageRef}
+            src="/img/169.png"
+            alt="プレゼン画像"
+            className="presenter-image"
+          />
+			)}
       </div>
+    </div>
 
-      {/* 右側のエリア */}
-      <div className="right-area">
-          <h3>ChatGPTの応答:</h3>
-          <p>{response}</p>
-        </div>
+    {/* 右側のエリア */}
+    <div className="right-area">
+      <h3>ChatGPTの応答:</h3>
+      <p>{response}</p>
       </div>
+    </div>
   );
 };
 
