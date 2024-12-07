@@ -8,6 +8,7 @@ import TextBox from '../../components/SlidePage/TextBox/TextBox.js';
 import { io } from "socket.io-client";
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
+import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
 
 const socket = io("https://1d32-202-13-166-100.ngrok-free.app"); // サーバーのURLに合わせて変更
 
@@ -17,7 +18,6 @@ function Slidepage() {
 	const [textBoxes, setTextBoxes] = useState([]);
 	const [selectedBoxId, setSelectedBoxId] = useState(null);
 	const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
-
 	const [content, setContent] = useState(''); // 初期値を空文字に設定
 	
 	const handleInput = (e) => {
@@ -112,9 +112,17 @@ function Slidepage() {
 					socket={socket} // 必要に応じて WebSocket を設定
 					setSelectedBoxId={setSelectedBoxId}
 				/>
-					<DropZone onDrop={handleDrop} />
+				<Anglechange
+					selectedBoxId={selectedBoxId}
+					isTextBoxFocused={isTextBoxFocused}
+					setTextBoxes={setTextBoxes}
+					socket={socket} // 必要に応じて WebSocket を設定
+					setSelectedBoxId={setSelectedBoxId}
+				/>
+				<DropZone onDrop={handleDrop} />
 				{textBoxes.map((box) => (
 				<TextBox
+					rotate={box.rotate}
 					key={box.id}
 					id={box.id}
 					text={box.text}
