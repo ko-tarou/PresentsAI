@@ -9,7 +9,7 @@ const ViewerPage = () => {
   
   // タスクバーの表示・非表示を制御
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    const handleMoseMove = (event) => {
       if (event.clientY >= window.innerHeight - taskbarHeight) {
         setShowTaskbar(true); // マウスが下部にある場合タスクバーを表示
       } else {
@@ -48,9 +48,9 @@ const ViewerPage = () => {
 				<p>画像データがありません。</p>
 			)}
       <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
-        <div className="taskbar-item">スタート</div>
+        <div className="taskbar-item">全画面表示を終了</div>
         <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
-          タスク1
+          発表者モード
         </div>
       </div>
     </div>
