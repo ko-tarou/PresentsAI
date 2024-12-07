@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import './ViewerPage.css'; // 必要に応じてCSSでスタイルを調整
+import { ImageContext } from '../ImageContext';
 
 const ViewerPage = () => {
   const [showTaskbar, setShowTaskbar] = useState(false); // タスクバー表示状態
   const taskbarHeight = 50; // タスクバーの高さ
+  const {imageData} = useContext(ImageContext)
   
   // タスクバーの表示・非表示を制御
   useEffect(() => {
@@ -36,19 +38,19 @@ const ViewerPage = () => {
     } else {
       alert('ポップアップブロックが有効です。ポップアップを許可してください。');
     }
-  };
+  };  
 
   return (
     <div className="viewer-container">
-      <img
-        src="/img/169.png" // プレゼン用の画像を指定
-        alt="プレゼン画像"
-        className="viewer-image"
-      />
+	    {imageData ? (
+				<img src={imageData} alt="プレゼンスライド" className='viewer-image'/>
+			) : (
+				<p>画像データがありません。</p>
+			)}
       <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
-        <div className="taskbar-item">スタート</div>
+        <div className="taskbar-item">全画面表示を終了</div>
         <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
-          タスク1
+          発表者モード
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigateをインポート
+import { ImageContext } from '../ImageContext';
 import './PresenPage.css'; // 既存のCSSファイルをインポート
 
 const PresenPage = () => {
@@ -8,7 +9,8 @@ const PresenPage = () => {
   const slideRef = useRef(null);                           // スライド要素の参照
   const taskbarHeight = 50;                                // タスクバーの高さ
   const navigate = useNavigate();                          // navigateを呼び出す
-  
+  const { imageData } = useContext(ImageContext);
+
   // スライドを全画面表示にする関数
   const toggleSlideFullscreen = () => {
     if (slideRef.current) {
@@ -19,7 +21,7 @@ const PresenPage = () => {
       }
     }
   };
-  
+
   // 全画面状態の変更を監視
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -30,7 +32,12 @@ const PresenPage = () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
   }, []);
-  
+
+  // ページマウント時に全画面表示を開始
+  useEffect(() => {
+    toggleSlideFullscreen(); // ページが表示されたら全画面モードを開始
+  }, []);
+
   // タスクバーの表示・非表示を制御
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -82,21 +89,29 @@ const PresenPage = () => {
 
   return (
     <div className="presen-container">
-      <h1>プレゼンテーション画面</h1>
       <button onClick={toggleSlideFullscreen} className="fullscreen-button">
         {isFullscreen ? '全画面表示を終了' : 'スライド全画面表示'}
       </button>
       <div className="slide-container">
         <div ref={slideRef} className={`slide ${isFullscreen ? 'fullscreen' : ''}`}>
-          <img src="/img/169.png" alt="プレゼンスライド" />
+          {/* <img src="/img/169.png" alt="プレゼンスライド" /> */}
+		    {imageData ? (
+            <img src={imageData} alt="プレゼンスライド"/>
+          ) : (
+            <p>画像データがありません。</p>
+          )}
           {isFullscreen && (
             <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
-              <div className="taskbar-item">スタート</div>
+              <div className="taskbar-item">全画面表示を終了</div>
               <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
-                タスク1
+                発表者モード 
               </div>
               <div className="taskbar-item" onClick={exitFullscreen}>
-                <img src="/img/fullscreen-exit.svg" style={{ width: '30px', cursor: 'pointer', marginLeft: '-40px' }} alt="Exit Fullscreen" />
+                <img
+                  src="/img/fullscreen-exit.svg"
+                  style={{ width: '30px', cursor: 'pointer', marginLeft: '-40px' }}
+                  alt="Exit Fullscreen"
+                />
               </div>
             </div>
           )}
