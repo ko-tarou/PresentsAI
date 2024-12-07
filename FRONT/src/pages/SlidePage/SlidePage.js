@@ -18,8 +18,11 @@ function Slidepage() {
 	const [selectedBoxId, setSelectedBoxId] = useState(null);
 	const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
 
-	const commentArea = document.querySelector('.comment-area');
-	const content = commentArea.innerHTML; // 入力内容を取得
+	const [content, setContent] = useState(''); // 初期値を空文字に設定
+	
+	const handleInput = (e) => {
+		setContent(e.target.innerText); // ユーザーが入力した内容を更新
+	};
 
 	const handleDrop = (item, position) => {
 		const newId = item.id || `box_${textBoxes.length + 1}`;
@@ -146,8 +149,12 @@ function Slidepage() {
 				/>
 				))}
 				</div>
-				<div className='comment-area' contentEditable="true">
-
+				<div 
+					className='comment-area' 
+					contentEditable="true"
+					onInput={handleInput}
+				>
+				
 				</div>
 							
 				<div className='slide-list'>
