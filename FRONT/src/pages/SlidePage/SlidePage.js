@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import "./SlidePage.css";
@@ -14,13 +14,14 @@ import {
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
 import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
+import domtoimage from 'dom-to-image';
 
 function Slidepage() {
 	const [activeTab, setActiveTab] = useState("tab1");
 	const [textBoxes, setTextBoxes] = useState([]); // テキストボックスのデータ
 	const [selectedBoxId, setSelectedBoxId] = useState(null); // 選択されているボックスID
 	const [isTextBoxFocused, setIsTextBoxFocused] = useState(false); // ボックスがフォーカス中か
-
+	const mainSlideRef =useRef(null);
 
 	useEffect(() => {
 		const unsubscribe = subscribeToTextBoxes((fetchedTextBoxes) => {
@@ -37,7 +38,20 @@ function Slidepage() {
 		};
 	}, [selectedBoxId]);
 	
-
+	//画像保存するよ
+	const handleSaveImage = async () => {
+		if(mainSlideRef.current){
+			try{
+				const dataUrl = await domtoimage.toPng(mainSlideRef.current);
+				const link = document.createElement('a');
+				link.href = dataUrl;
+				link.download = 'main-slide.png';
+				link.click();
+				} catch (error) {
+					console.error('キャプチャエラー:', error);
+			}
+		}
+	};
 	// テキストボックスを移動
 	const handleBoxMove = async (id, newPosition) => {
 		await updateTextBox(id, { x: newPosition.x, y: newPosition.y });
@@ -91,7 +105,11 @@ function Slidepage() {
 					<div className='left-sidebar'>
 						<TabContent activeTab={activeTab} />
 					</div>
-					<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
+						<div 
+							className='main-slide' 
+							tyle={{ position: 'relative', height: '100%' }}
+							ref={mainSlideRef}
+						>
 						<KeyboardHandler
 							selectedBoxId={selectedBoxId}
 							isTextBoxFocused={isTextBoxFocused}
