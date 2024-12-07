@@ -56,9 +56,13 @@ const PresenPage = () => {
     }
   };
 
-  // タスク1をクリックしたときに新しいブラウザウィンドウを開く関数
-  const openNewWindow = () => {
-    window.open('/presenter', '_blank', 'width=800,height=600'); // 新しいウィンドウを開く
+  // タスク1をクリックしたときに新しいブラウザウィンドウを開くと同時に現在のウィンドウを/viewerに遷移する関数
+  const openNewWindowAndNavigate = () => {
+    // 新しいウィンドウを開く
+    window.open('/presenter', '_blank', 'width=800,height=600');
+
+    // 現在のウィンドウを /viewer に遷移
+    navigate('/viewer');
   };
 
   return (
@@ -73,7 +77,7 @@ const PresenPage = () => {
           {isFullscreen && (
             <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
               <div className="taskbar-item">スタート</div>
-              <div className="taskbar-item" onClick={openNewWindow}>
+              <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
                 タスク1
               </div>
               <div className="taskbar-item" onClick={exitFullscreen}>
