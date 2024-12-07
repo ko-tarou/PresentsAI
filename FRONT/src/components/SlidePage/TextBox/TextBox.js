@@ -3,9 +3,9 @@ import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../DropZone/ItemTypes.js';
 
 function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, onBlur }) {
-    const [value, setValue] = useState(text || '');
-    const [size, setSize] = useState({ width: 100, height: 50 });
-    const [isEditing, setIsEditing] = useState(false);
+	const [value, setValue] = useState(text || '');
+	const [size, setSize] = useState({ width: 100, height: 50 });
+	const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         setValue(text);
