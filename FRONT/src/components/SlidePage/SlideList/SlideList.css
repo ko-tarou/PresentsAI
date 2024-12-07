@@ -5,7 +5,7 @@
   justify-content: flex-start; /* 上に揃える */
   align-items: center;      /* 横方向を中央揃え */
   gap: 5%;                  /* 各ボックス間の間隔 */
-  overflow-y: auto;         /* 縦スクロールを可能にする */
+  overflow-y:auto;         /* 縦スクロールを可能にする */
   padding: 20px;
   background-color: transparent; /* 背景色を設定 */
   height: 55vh;             /* ビューポート高さを使用 */
@@ -13,12 +13,11 @@
 }
 
 
-    
     /* 個々のボックスのスタイル */
     .clickable-text {
     padding:10px;
-    min-height: 180px;
-    min-width: 320px;
+    min-height: 130px;
+    min-width: 200px;
        /* transition: transform 0.3s, box-shadow 0.3s; */
     background-color: #5d5d87a1;
     border-radius: 5px;

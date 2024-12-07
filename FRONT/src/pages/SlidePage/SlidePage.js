@@ -71,6 +71,7 @@ function Slidepage() {
 			}
 		}
 	};
+
 	// テキストボックスを移動
 	const handleBoxMove = async (id, newPosition) => {
 		await updateTextBox(id, { x: newPosition.x, y: newPosition.y });
