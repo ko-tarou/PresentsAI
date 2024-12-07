@@ -2,15 +2,15 @@
     position: relative; /* 相対位置の親要素 */
     width: 100vw; /* ページ全幅 */
     height: 100vh; /* ページ全高 */
-    background-color: #f0f0f0; /* 背景色は必要に応じて変更 */
+    background-color: #1e1e2f; /* 背景色は必要に応じて変更 */
   }
   
   .presenter-image {
-    top: 0; /* 左上に配置 */
-    left: 0; /* 左上に配置 */
-    width:  50%; /* 画像の幅をページ幅の60%に調整 */
+    width: 50%; /* 画像の幅をページ幅の50%に調整 */
     height: auto; /* アスペクト比を維持 */
-    max-height: 50%; /* 高さをページ高さの60%以内に制限 */
+    max-height: 50%; /* 高さをページ高さの50%以内に制限 */
     object-fit: contain; /* 画像をアスペクト比を保ちながら収める */
+    margin-top: 100px; /* 上に余白を追加して下げる */
+    margin-left: 60px;
   }
   
