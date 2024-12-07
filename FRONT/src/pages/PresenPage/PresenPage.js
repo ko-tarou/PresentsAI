@@ -94,16 +94,17 @@ const PresenPage = () => {
       </button>
       <div className="slide-container">
         <div ref={slideRef} className={`slide ${isFullscreen ? 'fullscreen' : ''}`}>
-          {imageData ? (
-            <img src={imageData} alt="プレゼンスライド" />
+          {/* <img src="/img/169.png" alt="プレゼンスライド" /> */}
+		    {imageData ? (
+            <img src={imageData} alt="プレゼンスライド"/>
           ) : (
             <p>画像データがありません。</p>
           )}
           {isFullscreen && (
             <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
-              <div className="taskbar-item">スタート</div>
+              <div className="taskbar-item">全画面表示を終了</div>
               <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
-                タスク1
+                発表者モード 
               </div>
               <div className="taskbar-item" onClick={exitFullscreen}>
                 <img
