@@ -23,8 +23,8 @@ function AnalysisPage() {
 		{
 			label: '分析結果',
         	data: [80, 65, 90, 70, 85],
-        	backgroundColor: 'rgba(52, 58, 64, 0.1)',
-        	borderColor: 'rgba(52, 58, 64, 1)',
+        	backgroundColor: 'rgba(52, 58, 64, 0.1)', // チャートの背景色
+            borderColor: 'rgba(255, 99, 132, 1)', // 5角形のふちと角度線を同じ色に設定（赤色）
 			borderWidth: 2,
         },
     ],
@@ -34,8 +34,15 @@ const options = {
     responsive: true,
     scales: {
 		r: {
-        	angleLines: { color: '#ddd' },
-        	grid: { color: '#eee' },
+        	angleLines: { 
+                color: 'rgba(255, 255, 255, 0.3)', // 角度線の色（例：赤色）
+				 },
+        	grid: { color: 'rgba(255, 255, 255, 0.3)', // 内側のグリッド線を白色（薄い白色）に設定
+        
+				 },
+			pointLabels: {
+				color: '#fff' // 目盛りのラベルを白色に設定
+			},
 			ticks: { display: false },
 			beginAtZero: true,
 		},
@@ -70,6 +77,7 @@ return (
 			</div>
 		</div>
 	</div>
+	
 	);
 }
 
