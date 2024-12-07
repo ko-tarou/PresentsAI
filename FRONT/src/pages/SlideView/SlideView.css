@@ -111,3 +111,24 @@ body{
     transform: scale(1.2);
 }
 
+.box-name-input {
+    width: 96%;
+    border: none;
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff88;
+    border-radius: 4px;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+.box-name-input:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff88;
+}
+.box.highlight {
+    box-shadow: 0 0 10px 5px rgba(255, 165, 0, 0.8); /* オレンジ色の光 */
+    border-radius: 8px; /* 角を少し丸める */
+    transition: box-shadow 0.3s ease; /* 滑らかなアニメーション */
+}
+
