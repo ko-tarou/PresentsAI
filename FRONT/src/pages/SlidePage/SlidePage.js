@@ -17,6 +17,7 @@ import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
 import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
 import domtoimage from 'dom-to-image';
+import SlideList from '../../components/SlidePage/SlideList/SlideList.js';
 
 function Slidepage() {
 	const [activeTab, setActiveTab] = useState("tab1");
@@ -177,9 +178,7 @@ function Slidepage() {
 					
 
 					<div className='slide-list'>
-						<div className="slide-item"></div>
-						<div className="slide-item"></div>
-						<div className="slide-item"></div>
+						<SlideList/>
 					</div>
 					{/* 発表原稿を記述する棚 */}
 					<div className="footer"></div>
