@@ -1,0 +1,17 @@
+.viewer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; /* ビューポートの幅をフルに使用 */
+  height: 100vh; /* ビューポートの高さをフルに使用 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 画像が画面外に溢れるのを防止 */
+  background-color: #000; /* 背景色を黒に設定（必要なら変更） */
+}
+
+.viewer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* アスペクト比を保持しつつ全体表示 */
+}
