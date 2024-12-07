@@ -134,4 +134,9 @@ socket.on("deleteTextBox",(boxId) => {
 socket.on("disconnect", () => {
 	console.log("クライアントが切断しました:", socket.id);
 });
-});
+
+socket.on("commentUpdated", (data) => {
+	console.log("commentUpdated", data.comment);
+
+	socket.broadcast.emit("commentUpdated", data);
+})});
