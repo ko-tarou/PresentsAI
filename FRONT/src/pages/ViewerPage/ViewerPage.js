@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ViewerPage.css'; // 必要に応じてCSSでスタイルを調整
+import { ImageContext } from '../ImageContext';
 
 const ViewerPage = () => {
   const [showTaskbar, setShowTaskbar] = useState(false); // タスクバー表示状態
@@ -40,11 +41,11 @@ const ViewerPage = () => {
 
   return (
     <div className="viewer-container">
-      <img
-        src="/img/169.png" // プレゼン用の画像を指定
-        alt="プレゼン画像"
-        className="viewer-image"
-      />
+	    {imageData ? (
+				<img src={imageData} alt="プレゼンスライド" className='viewer-image'/>
+			) : (
+				<p>画像データがありません。</p>
+			)}
       <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
         <div className="taskbar-item">スタート</div>
         <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
