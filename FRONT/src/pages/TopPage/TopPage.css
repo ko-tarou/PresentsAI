@@ -1,9 +1,9 @@
 /* ベース設定 */
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    font-family: 'Poppins', sans-serif; /* モダンなGoogle Fontsを使用 */
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif; /* モダンなGoogle Fontsを使用 */
   background-color: #1e1e2f; /* 暗い背景色 */
   color: #e0e0e0; /* 明るい文字色 */
   }
