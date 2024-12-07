@@ -35,7 +35,15 @@ const SlideView = () => {
 
   // 検索ボタンがクリックされたときの処理
   const handleSearchClick = () => {
-    setIsSearched(true); // 検索実行フラグを立てる
+    const matchedBoxes = boxes.filter((box) => box.name.includes(searchQuery));
+    if (matchedBoxes.length === 0) {
+      alert("一致するスライドが見つかりませんでした");
+      setIsSearched(false);
+    } else {
+      setIsSearched(true);
+      const remainingBoxes = boxes.filter((box) => !box.name.includes(searchQuery));
+      setBoxes([...matchedBoxes, ...remainingBoxes]); // 一致するものを先頭に移動
+    }
   };
 
   return (
@@ -50,7 +58,7 @@ const SlideView = () => {
         />
         <button
           className="search-button-leftside"
-          onClick={handleSearchClick} // 検索ボタンをクリックするとハイライトが反映される
+          onClick={handleSearchClick}
         >
           検索
         </button>
@@ -58,13 +66,12 @@ const SlideView = () => {
       <div className="rightside">
         <div className="box-whole">
           {boxes.map((box) => (
-            <div
-              className={`box-container`}
-              key={box.id}
-            >
+            <div className="box-container" key={box.id}>
               <div
                 className={`box ${
-                  isSearched && searchQuery !== "" && box.name === searchQuery
+                  isSearched &&
+                  searchQuery !== "" &&
+                  box.name.includes(searchQuery) // 部分一致を確認
                     ? "highlight"
                     : ""
                 }`}
