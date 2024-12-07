@@ -5,11 +5,11 @@ import { ImageContext } from '../ImageContext';
 const ViewerPage = () => {
   const [showTaskbar, setShowTaskbar] = useState(false); // タスクバー表示状態
   const taskbarHeight = 50; // タスクバーの高さ
-  const {imageData} = useContext
+  const {imageData} = useContext(ImageContext)
   
   // タスクバーの表示・非表示を制御
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    const handleMoseMove = (event) => {
       if (event.clientY >= window.innerHeight - taskbarHeight) {
         setShowTaskbar(true); // マウスが下部にある場合タスクバーを表示
       } else {
