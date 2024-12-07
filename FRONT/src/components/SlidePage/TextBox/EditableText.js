@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 
-const EditableText = ({ value, onChange, fontSize }) => {
+const EditableText = ({ fontSize }) => {
+	// ローカルステートで文字を管理
+	const [value, setValue] = useState('');
 	const [isEditing, setIsEditing] = useState(false);
 
-	const handleDoubleClick = () => setIsEditing(true);
-	const handleBlur = () => setIsEditing(false);
+	const handleDoubleClick = () => setIsEditing(true); // 編集モードに切り替え
+	const handleBlur = () => setIsEditing(false);       // 表示モードに戻る
 
 	return isEditing ? (
 		<input
 			type="text"
-			value={value}
-			onChange={(e) => onChange(e.target.value)}
-			onBlur={handleBlur}
+			value={value} // ローカルステートの値を表示
+			onChange={(e) => setValue(e.target.value)} // 入力された値をローカルステートに保存
+			onBlur={handleBlur} // フォーカスが外れたら編集終了
 			autoFocus
 			style={{
 				width: '100%',
@@ -26,10 +28,11 @@ const EditableText = ({ value, onChange, fontSize }) => {
 			style={{
 				width: '100%',
 				height: '100%',
+				cursor: 'text',
 			}}
-			onDoubleClick={handleDoubleClick}
+			onDoubleClick={handleDoubleClick} // ダブルクリックで編集モードに切り替え
 		>
-			{value || 'ダブルクリックで編集'}
+			{value || ''} {/* 初期表示 */}
 		</div>
 	);
 };
