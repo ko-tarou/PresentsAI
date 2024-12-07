@@ -46,7 +46,11 @@ function Slidepage() {
 
 	const handleDrop = async (item, position) => {
 		if (item.id) {
-			await handleBoxMove(item.id, position);
+			await handleBoxMove(item.id, {
+				x: position.x,
+				y: position.y,
+				text: item.text
+			});
 		} else {
 			const newBox = {
 				text: item.text || `TextBox ${textBoxes.length + 1}`,
@@ -83,16 +87,6 @@ function Slidepage() {
 		window.addEventListener('keydown', handleKeyDown);
 		return () => window.removeEventListener('keydown', handleKeyDown);
 	}, [handleKeyDown]);
-
-	// フォントサイズの増加
-	const increaseFontSize = async () => {
-		if (selectedBoxId) {
-			const box = textBoxes.find((box) => box.id === selectedBoxId);
-			if (box) {
-				await updateTextBox(selectedBoxId, { fontSize: (box.fontSize || 16) + 1 });
-			}
-		}
-	};
 
 	return (
 		<DndProvider backend={HTML5Backend}>
