@@ -1,80 +1,130 @@
+/* プレゼンテーションのコンテナ */
+.presen-container {
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* フルスクリーンボタン */
 .fullscreen-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .fullscreen-button:hover {
-    background-color: #0056B3;
-  }
-  /* プレゼンテーションのコンテナ */
-  .presen-container {
-    padding: 20px;
-    text-align: center;
-  }
-  /* スライドのスタイル */
-  .slide-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-  }
-  .slide {
-    width: 80vw; /* 画面幅の80% */
-    height: 45vw; /* 16:9 のアスペクト比 */
-    background-color: #222;
-    overflow: hidden;
-    border-radius: 10px;
-    position: relative;
-  }
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  /* スライドの全画面モード */
-  .fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-  }
-  /* タスクバーのスタイル */
-  .taskbar {
-    position: absolute; /* スライド内で相対位置 */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: rgba(51, 51, 51, 0.8); /* 半透明の黒 */
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-    transform: translateY(100%); /* 初期状態は隠れている */
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* アニメーション */
-  }
-  .taskbar-visible {
-    transform: translateY(0); /* スライドイン */
-  }
-  .taskbar-hidden {
-    transform: translateY(100%); /* スライドアウト */
-  }
-  .taskbar-item {
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .taskbar-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 5px; /* ボタンのサイズを小さくするためにパディングを減らす */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 20px; /* 上部に配置 */
+  left: 10px; /* 左に配置 */
+  z-index: 10; /* 他の要素より前面に表示 */
+  font-size: 14px; /* フォントサイズを小さくしてボタンをさらに小さく */
+}
+
+/* フルスクリーンボタンのホバー効果 */
+.fullscreen-button:hover {
+  background-color: #0056B3;
+}
+
+/* スライドのスタイル */
+.slide-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex: 1;
+  width: 100%;
+  height: calc(100vh - 50px); /* 高さを調整（タスクバーの高さを差し引く） */
+  overflow: hidden;
+}
+
+/* スライド */
+.slide {
+  width: 80vw; /* 画面幅の80% */
+  height: calc(80vw * 9 / 16); /* 幅の80%に基づいた16:9の高さ */
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* タスクバーのスタイル */
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(51, 51, 51, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  transform: translateY(100%); /* 初期状態は隠れている */
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* taskbar-item の画像設定 */
+.taskbar-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* アイテムのホバー効果 */
+.taskbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* スライドイン時 */
+.taskbar-visible {
+  transform: translateY(0);
+}
+
+/* スライドアウト時 */
+.taskbar-hidden {
+  transform: translateY(100%);
+}
+
+/* taskbar-itemの設定 */
+.taskbar-item {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 の比率 */
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: flex-start; /* 文字を上部に配置 */
+  justify-content: center; /* 中央に配置 */
+  color: white;
+  font-size: 20px;
+  z-index: 5; /* 文字を前面に表示 */
+  padding-top: 5px; /* 文字を少し上に配置 */
+  height: 70%; 
+}
+
+/* taskbar-item のテキストのスタイル */
+.taskbar-item span {
+  position: absolute;
+  top: 10px; /* 上に配置 */
+  z-index: 10; /* 文字が画像より前面に表示 */
+  width: 100%;
+  text-align: center; /* 文字を中央揃えに */
+}
