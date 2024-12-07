@@ -10,6 +10,8 @@ import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
 import ButtonSave from './components/button/ButtonSave/ButtonSave.js';
 import WaitPage from './pages/WaitPage/WaitPage.js';
 import Audio from './pages/audio/AudioRecognition.js';
+import PresenterPage from './pages/PresenterPage/PresenterPage.js'; 
+import ViewerPage from './pages/ViewerPage/ViewerPage.js';
 
 const Header = () => {
   const location = useLocation();
@@ -52,6 +54,8 @@ function App() {
         <Route path="/Ana" element={<AnalysisPage />} />
         <Route path="/Wait" element={<WaitPage />} />
         <Route path="/audio" element={<Audio />} />
+        <Route path="/presenter" element={<PresenterPage />} />
+        <Route path="/viewer" element={<ViewerPage />} />
       </Routes>
     </Router>
   );
