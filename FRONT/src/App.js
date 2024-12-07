@@ -16,6 +16,7 @@ import ViewerPage from './pages/ViewerPage/ViewerPage.js';
 const Header = () => {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
