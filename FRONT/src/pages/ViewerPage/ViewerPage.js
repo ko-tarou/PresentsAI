@@ -9,9 +9,9 @@ const ViewerPage = () => {
     <div className="viewer-container">
       <img
         ref={imageRef}
-        src="your-slide-image.jpg" // プレゼン用の画像を指定
+        src="/img/169.png" // プレゼン用の画像を指定
         alt="プレゼン画像"
-        className="presentation-image"
+        className="viewer-image"
       />
     </div>
   );

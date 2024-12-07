@@ -58,8 +58,23 @@ const PresenPage = () => {
 
   // タスク1をクリックしたときに新しいブラウザウィンドウを開くと同時に現在のウィンドウを/viewerに遷移する関数
   const openNewWindowAndNavigate = () => {
-    // 新しいウィンドウを開く
-    window.open('/presenter', '_blank', 'width=800,height=600');
+    // ディスプレイのサイズを取得
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
+
+    // 新しいウィンドウをフルスクリーンサイズで開く
+    const newWindow = window.open(
+      '/presenter',
+      '_blank',
+      `toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=${screenWidth},height=${screenHeight},top=0,left=0`
+    );
+
+    // 新しいウィンドウが開いた場合、focusを設定
+    if (newWindow) {
+      newWindow.focus();
+    } else {
+      alert('ポップアップブロックが有効です。ポップアップを許可してください。');
+    }
 
     // 現在のウィンドウを /viewer に遷移
     navigate('/viewer');
@@ -73,7 +88,7 @@ const PresenPage = () => {
       </button>
       <div className="slide-container">
         <div ref={slideRef} className={`slide ${isFullscreen ? 'fullscreen' : ''}`}>
-          <img src="your-slide-image.jpg" alt="プレゼンスライド" />
+          <img src="/img/169.png" alt="プレゼンスライド" />
           {isFullscreen && (
             <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
               <div className="taskbar-item">スタート</div>

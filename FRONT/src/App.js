@@ -20,8 +20,9 @@ const Header = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const hiddenPaths = ['/presenter',"/viewer"];
+  const hiddenPaths = ['/presenter', '/viewer'];
 
+  // Header を特定のパスで非表示
   if (hiddenPaths.includes(location.pathname)) {
     return null;
   }
@@ -39,7 +40,7 @@ const Header = () => {
           <button className="search-button">検索</button>
         </div>
       )}
-      {['/slidepage/'].includes(location.pathname) && (
+      {['/slidepage'].includes(location.pathname) && (
         <ButtonSave />
       )}
       
@@ -62,6 +63,8 @@ function App() {
         <Route path="/audio" element={<Audio />} />
         <Route path="/presenter" element={<PresenterPage />} />
         <Route path="/viewer" element={<ViewerPage />} />
+        {/* デフォルトルートを追加 */}
+        <Route path="*" element={<TopPage />} />
       </Routes>
     </Router>
   );
