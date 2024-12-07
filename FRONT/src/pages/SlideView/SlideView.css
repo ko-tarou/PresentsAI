@@ -93,3 +93,20 @@ body{
     overflow: auto; 
     height: 100%;
 }
+
+.button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.button-group {
+    text-align: right;
+    margin-right: 10%;
+}
+
+.button:hover {
+    transform: scale(1.2);
+}
+
