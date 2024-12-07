@@ -3,12 +3,12 @@
   display: flex;
   flex-direction: column;
   height: 88vh;
-  background-color: #f2f2f2;
+  background-color: #1e1e2f;
 }
 
 /* ヘッダー */
 .header {
-  background-color: #d9d9d9;
+  background-color: #2c3e50;
   padding: 10px;
   text-align: center;
 }
@@ -16,8 +16,8 @@
 /* メインコンテンツ */
 .content {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr; /* 左、中、右の幅 */
-  grid-template-rows: 1fr 50px; /* 左サイドバーの高さを合わせるため、行を分割 */
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 50px;
   gap: 10px;
   padding: 5%;
   flex: 1;
@@ -26,21 +26,25 @@
 /* 左サイドバー */
 .left-sidebar {
   grid-column: 1 / 2;
-  grid-row: 1 / 3; /* 1行目と2行目を結合 */
-  background-color: #e0e0e0;
+  grid-row: 1 / 3;
+  background-color: #3a3a57b5;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  border-radius: 5px;
 }
 
 /* メインスライドエリア */
 .main-slide {
   grid-column: 2 / 3;
-  grid-row: 1 / 2; /* 1行目に配置 */
-  background-color: #cfcfcf;
+  grid-row: 1 / 2;
+  background-color: #ffffff;
+  color: #ecf0f1;
 }
 
 /* 右サイドバー */
 .slide-list {
   grid-column: 3 / 4;
-  grid-row: 1 / 3; /* 1行目に配置 */
+  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
   gap: 5%;
@@ -48,28 +52,25 @@
 
 .slide-item {
   flex: 1;
-  background-color: #4b4b4b;
+  background-color: #5d5d87a1;
   border-radius: 5px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* ビューポート全体の高さに対応 */
+  height: 100vh;
 }
 
 
 .comment-area {
-  background-color: #d9d9d9;
+  background-color: #818db5b9;
   padding: 2%;
-  font-family:Arial, Helvetica, sans-serif
-}
-
-
-.comment-area {
-  border: 1px solid #ccc; /* 枠線を追加 */
-  font-size: 16px; /* フォントサイズを指定 */
-  color: #333; /* テキストの色を黒にする */
-  outline: none; /* フォーカス時の青い枠線を消す */
-  overflow-y: auto; /* 縦方向のスクロールを有効化 */
+  font-family: 'Arial', Helvetica, sans-serif;
+  border: 1px solid #2c3e50;
+  font-size: 16px;
+  color: #333;
+  border-radius: 5px;
+  outline: none;
+  overflow-y: auto;
 }
