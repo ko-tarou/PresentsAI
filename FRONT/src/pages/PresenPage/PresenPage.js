@@ -101,9 +101,9 @@ const PresenPage = () => {
           )}
           {isFullscreen && (
             <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
-              <div className="taskbar-item">スタート</div>
+              <div className="taskbar-item">全画面表示を終了</div>
               <div className="taskbar-item" onClick={openNewWindowAndNavigate}>
-                タスク1
+                発表者モード 
               </div>
               <div className="taskbar-item" onClick={exitFullscreen}>
                 <img

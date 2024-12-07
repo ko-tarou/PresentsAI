@@ -1,5 +1,5 @@
 .circle-button:hover {
-    background-color: #706e74;
+    background-color: #4b536e;
 }
 
 .circle-button {
@@ -8,7 +8,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #7e8894;
+    background-color: #4b536e;
     color: white;
     font-size: 20px;
     font-family: 'Arial', sans-serif;
@@ -24,7 +24,7 @@
 }
 
 .circle-button:hover {
-    background-color: #52565a;
+    background-color: #4b536e;
     transform: scale(1.1);
 }
 
@@ -35,7 +35,7 @@
 
 
 .circle-button:focus {
-    background-color: #54595f;
+    background-color: #4b536e;
     outline: none;
 }
 
