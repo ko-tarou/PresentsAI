@@ -6,10 +6,8 @@ const boxCount = 12;
 return (
 	<div className="SlideView">
 	<div className="leftside">
-		<button className="SlideView-Button1">ボタン1</button>
-		<button className="SlideView-Button2">ボタン2</button>
-		<button className="SlideView-Button3">ボタン3</button>
-		<button className="SlideView-Button4">ボタン4</button>
+		<input type="text" placeholder="スライド名を入力" className="search-field-leftside" />
+		<button className="search-button-leftside">検索</button>
 	</div>
 	<div className="rightside">
 		<div className="box-whole">
