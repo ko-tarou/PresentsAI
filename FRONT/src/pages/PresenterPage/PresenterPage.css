@@ -2,15 +2,57 @@
     position: relative; /* 相対位置の親要素 */
     width: 100vw; /* ページ全幅 */
     height: 100vh; /* ページ全高 */
-    background-color: #f0f0f0; /* 背景色は必要に応じて変更 */
+    background-color: #1e1e2f; /* 背景色は必要に応じて変更 */
+    overflow: hidden;
   }
   
   .presenter-image {
-    top: 0; /* 左上に配置 */
-    left: 0; /* 左上に配置 */
-    width:  50%; /* 画像の幅をページ幅の60%に調整 */
+    width: 50%; /* 画像の幅をページ幅の50%に調整 */
     height: auto; /* アスペクト比を維持 */
-    max-height: 50%; /* 高さをページ高さの60%以内に制限 */
+    max-height: 50%; /* 高さをページ高さの50%以内に制限 */
     object-fit: contain; /* 画像をアスペクト比を保ちながら収める */
+    margin-top: 100px; /* 上に余白を追加して下げる */
+    margin-left: 60px;
+    pointer-events: none; /* クリックイベントを無効化 */
+    user-select: none; /* 画像の選択を無効化 */
+    border: none;
+    outline: none;
+}
+
+  .timer-container {
+    margin-bottom: 20px;
+    text-align: center;
   }
   
+  .time-display {
+    font-size: 2rem;
+  }
+  
+  .button-group {
+    margin-top: 10px;
+  }
+  
+  .reset-button, .play-button {
+    font-size: 1.5rem;
+    margin: 0 10px;
+  } 
+
+  .presenter-image:focus {
+    outline: none; /* フォーカス時のアウトラインもリセット */
+  }
+
+  .horizontal-box {
+    width: 50%;
+    height: 130px; /* 高さ調整 */
+    background-color: #4CAF50; /* 背景色 */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: 8px; /* 角を丸くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* シャドウ */
+    margin-left: 60px;
+    border: none;
+    outline: none;
+  }

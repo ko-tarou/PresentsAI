@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef,useContext} from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigateをインポート
+import { ImageContext } from '../ImageContext';
 import './PresenPage.css'; // 既存のCSSファイルをインポート
 
 const PresenPage = () => {
@@ -8,6 +9,7 @@ const PresenPage = () => {
   const slideRef = useRef(null);                           // スライド要素の参照
   const taskbarHeight = 50;                                // タスクバーの高さ
   const navigate = useNavigate();                          // navigateを呼び出す
+  const { imageData } = useContext(ImageContext);
   
   // スライドを全画面表示にする関数
   const toggleSlideFullscreen = () => {
@@ -82,13 +84,17 @@ const PresenPage = () => {
 
   return (
     <div className="presen-container">
-      <h1>プレゼンテーション画面</h1>
       <button onClick={toggleSlideFullscreen} className="fullscreen-button">
         {isFullscreen ? '全画面表示を終了' : 'スライド全画面表示'}
       </button>
       <div className="slide-container">
         <div ref={slideRef} className={`slide ${isFullscreen ? 'fullscreen' : ''}`}>
-          <img src="/img/169.png" alt="プレゼンスライド" />
+          {/* <img src="/img/169.png" alt="プレゼンスライド" /> */}
+		      {imageData ? (
+            <img src={imageData} alt="プレゼンスライド"/>
+          ) : (
+            <p>画像データがありません。</p>
+          )}
           {isFullscreen && (
             <div className={`taskbar ${showTaskbar ? 'taskbar-visible' : 'taskbar-hidden'}`}>
               <div className="taskbar-item">スタート</div>

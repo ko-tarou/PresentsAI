@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { ImageProvider } from './pages/ImageContext.js';
 import TopPage from './pages/TopPage/TopPage.js';
 import SlideView from './pages/SlideView/SlideView.js';
 import SlidePage from './pages/SlidePage/SlidePage.js';
@@ -32,7 +33,6 @@ const Header = () => {
       <nav>
         <Link to="/">TopPage</Link>
         <Link to="/slideview">SlideView</Link>
-        <Link to="/presen">Presen</Link>
       </nav>
       {['/slideview'].includes(location.pathname) && (
         <div className="search-container">
@@ -51,22 +51,24 @@ const Header = () => {
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<TopPage />} />
-        <Route path="/slideview" element={<SlideView />} />
-        <Route path="/slidepage" element={<SlidePage />} />
-        <Route path="/presen" element={<PresenPage />} />
-        <Route path="/Ana" element={<AnalysisPage />} />
-        <Route path="/Wait" element={<WaitPage />} />
-        <Route path="/audio" element={<Audio />} />
-        <Route path="/presenter" element={<PresenterPage />} />
-        <Route path="/viewer" element={<ViewerPage />} />
-        {/* デフォルトルートを追加 */}
-        <Route path="*" element={<TopPage />} />
-      </Routes>
-    </Router>
+    <ImageProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<TopPage />} />
+          <Route path="/slideview" element={<SlideView />} />
+          <Route path="/slidepage" element={<SlidePage />} />
+          <Route path="/presen" element={<PresenPage />} />
+          <Route path="/Ana" element={<AnalysisPage />} />
+          <Route path="/Wait" element={<WaitPage />} />
+          <Route path="/audio" element={<Audio />} />
+          <Route path="/presenter" element={<PresenterPage />} />
+          <Route path="/viewer" element={<ViewerPage />} />
+          {/* デフォルトルートを追加 */}
+          <Route path="*" element={<TopPage />} />
+        </Routes>
+      </Router>
+    </ImageProvider>
   );
 }
 
