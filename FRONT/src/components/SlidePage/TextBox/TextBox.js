@@ -2,157 +2,132 @@ import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../DropZone/ItemTypes.js';
 
-function TextBox({ id, text, x, y, onTextChange, fontSize,onSelect, onFocus, onBlur }) {
-const [value, setValue] = useState(text || "");
-const [size, setSize] = useState({ width: 100, height: 50 });
-const [isEditing, setIsEditing] = useState(false); // 新しく追加
+function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, onBlur }) {
+    const [value, setValue] = useState(text || '');
+    const [size, setSize] = useState({ width: 100, height: 50 });
+    const [isEditing, setIsEditing] = useState(false);
 
-useEffect(() => {
-	setValue(text);
-}, [text]);
+    useEffect(() => {
+        setValue(text);
+    }, [text]);
 
-const [{ isDragging }, drag] = useDrag({
-	type: ItemTypes.TEXT_BOX,
-	item: { id, text: value, x, y },
-	collect: (monitor) => ({
-	isDragging: monitor.isDragging(),
-	}),
-});
+    const [{ isDragging }, drag] = useDrag({
+        type: ItemTypes.TEXT_BOX,
+        item: { id, x, y },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
 
-const handleChange = (e) => {
-	setValue(e.target.value);
-	onTextChange(id, e.target.value);
-};
+    const handleChange = (e) => {
+        const newValue = e.target.value;
+        setValue(newValue);
+        onTextChange(id, newValue);
+    };
 
-const handleClick = () => {
-	if (onSelect) {
-	onSelect(id);
-	}
-};
+    const handleDoubleClick = () => setIsEditing(true);
 
-const handleDoubleClick = () => {
-	setIsEditing(true); // ダブルクリック時に編集モードに切り替え
-};
+    const handleBlur = () => setIsEditing(false);
 
-const handleBlur = () => {
-	setIsEditing(false); // 入力エリアからフォーカスを外したときに編集モードを終了
-};
+    const handleResize = (e, direction) => {
+        e.stopPropagation();
+        e.preventDefault();
 
-const handleResize = (e, direction) => {
-	e.stopPropagation();
-	e.preventDefault();
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const startWidth = size.width;
+        const startHeight = size.height;
 
-	const startX = e.clientX;
-	const startY = e.clientY;
-	const startWidth = size.width;
-	const startHeight = size.height;
+        const handleMouseMove = (e) => {
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
 
-	const handleMouseMove = (e) => {
-	let newWidth = startWidth;
-	let newHeight = startHeight;
+            setSize({
+                width: direction.includes('right') ? startWidth + deltaX : startWidth - deltaX,
+                height: direction.includes('bottom') ? startHeight + deltaY : startHeight - deltaY,
+            });
+        };
 
-	if (direction.includes("right")) {
-		newWidth = startWidth + (e.clientX - startX);
-	} else if (direction.includes("left")) {
-		newWidth = startWidth - (e.clientX - startX);
-	}
+        const handleMouseUp = () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
 
-	if (direction.includes("bottom")) {
-		newHeight = startHeight + (e.clientY - startY);
-	} else if (direction.includes("top")) {
-		newHeight = startHeight - (e.clientY - startY);
-	}
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
 
-	setSize({ width: newWidth, height: newHeight });
-	};
+    return (
+        <div
+            ref={drag}
+            onClick={() => onSelect && onSelect(id)}
+            onDoubleClick={handleDoubleClick}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            style={{
+                width: `${size.width}px`,
+                height: `${size.height}px`,
+                fontSize: `${fontSize}px`,
+                opacity: isDragging ? 0.5 : 1,
+                padding: '10px',
+                border: '1px solid black',
+                cursor: 'move',
+                position: 'absolute',
+                left: x,
+                top: y,
+                transform: 'translate(-50%, -50%)',
+            }}
+        >
+            {isEditing ? (
+                <input
+                    type="text"
+                    value={value}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    autoFocus
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                        outline: 'none',
+                        fontSize: `${fontSize || 16}px`,
+                    }}
+                />
+            ) : (
+                <div style={{ width: '100%', height: '100%' }}>
+                    {value || 'ダブルクリックで編集'}
+                </div>
+            )}
 
-	const handleMouseUp = () => {
-	document.removeEventListener("mousemove", handleMouseMove);
-	document.removeEventListener("mouseup", handleMouseUp);
-	};
-
-	document.addEventListener("mousemove", handleMouseMove);
-	document.addEventListener("mouseup", handleMouseUp);
-};
-
-return (
-	<div
-	ref={drag}
-	onClick={handleClick}
-	onDoubleClick={handleDoubleClick} // ダブルクリックイベントの追加
-	onFocus={onFocus}
-	onBlur={onBlur}
-	style={{
-		width: `${size.width}px`,
-		height: `${size.height}px`,
-		fontSize: `${fontSize}px`,
-		opacity: isDragging ? 0.5 : 1,
-		padding: '10px',
-		border: '1px solid black',
-		cursor: 'move',
-		position: 'absolute',
-		left: x,
-		top: y,
-		transform: 'translate(-50%, -50%)',
-	}}
-	>
-	{isEditing ? (
-		<input
-		type="text"
-		value={value}
-		onChange={handleChange}
-		onBlur={handleBlur} // 入力終了時のイベント追加
-		autoFocus // 自動的にフォーカス
-		style={{
-			width: '100%',
-			height: '100%',
-			border: 'none',
-			outline: 'none',
-			fontSize: `${fontSize || 16}px`,
-		}}
-		/>
-	) : (
-		<div style={{ width: '100%', height: '100%' }}>
-		{value || "ダブルクリックで編集"}
-		</div>
-	)}
-	{/* 四隅のリサイズハンドル */}
-	<div onMouseDown={(e) => handleResize(e, "top-left")} style={resizeHandleStyle("top", "left")} />
-	<div onMouseDown={(e) => handleResize(e, "top-right")} style={resizeHandleStyle("top", "right")} />
-	<div onMouseDown={(e) => handleResize(e, "bottom-left")} style={resizeHandleStyle("bottom", "left")} />
-	<div onMouseDown={(e) => handleResize(e, "bottom-right")} style={resizeHandleStyle("bottom", "right")} />
-	{/* 上下左右のリサイズハンドル */}
-	<div onMouseDown={(e) => handleResize(e, "top")} style={resizeHandleStyle("top")} />
-	<div onMouseDown={(e) => handleResize(e, "right")} style={resizeHandleStyle("right")} />
-	<div onMouseDown={(e) => handleResize(e, "bottom")} style={resizeHandleStyle("bottom")} />
-	<div onMouseDown={(e) => handleResize(e, "left")} style={resizeHandleStyle("left")} />
-	{/* 上下左右の中点クリックでテキストボックス選択 */}
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("top")} />
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("right")} />
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("bottom")} />
-	<div onClick={(e) => { e.stopPropagation(); handleClick(); }} style={centerHandleStyle("left")} />
-	</div>
-);
+            {/* リサイズハンドル */}
+            {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((direction) => (
+                <div
+                    key={direction}
+                    onMouseDown={(e) => handleResize(e, direction)}
+                    style={resizeHandleStyle(direction)}
+                />
+            ))}
+        </div>
+    );
 }
 
-const resizeHandleStyle = (vertical, horizontal) => ({
-position: 'absolute',
-width: vertical ? '100%' : '8px',
-height: horizontal ? '100%' : '8px',
-backgroundColor: 'transparent',
-cursor: `${vertical || ''}${horizontal || ''}-resize`,
-[vertical]: vertical && 0,
-[horizontal]: horizontal && 0,
-});
+const resizeHandleStyle = (direction) => {
+    const baseStyle = {
+        position: 'absolute',
+        width: '8px',
+        height: '8px',
+        backgroundColor: 'gray',
+        cursor: `${direction.split('-').join('-')}-resize`,
+    };
 
-const centerHandleStyle = (position) => ({
-position: 'absolute',
-width: position === 'top' || position === 'bottom' ? '30px' : '8px',
-height: position === 'left' || position === 'right' ? '30px' : '8px',
-backgroundColor: 'transparent',
-cursor: 'pointer',
-[position]: '50%',
-transform: 'translate(-50%, -50%)',
-});
+    const positionMap = {
+        'top-left': { top: '-4px', left: '-4px' },
+        'top-right': { top: '-4px', right: '-4px' },
+        'bottom-left': { bottom: '-4px', left: '-4px' },
+        'bottom-right': { bottom: '-4px', right: '-4px' },
+    };
+
+    return { ...baseStyle, ...positionMap[direction] };
+};
 
 export default TextBox;
