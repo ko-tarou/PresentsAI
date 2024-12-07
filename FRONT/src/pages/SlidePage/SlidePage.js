@@ -46,11 +46,7 @@ function Slidepage() {
 
 	const handleDrop = async (item, position) => {
 		if (item.id) {
-			await handleBoxMove(item.id, {
-				x: position.x,
-				y: position.y,
-				text: item.text
-			});
+			await handleBoxMove(item.id, position);
 		} else {
 			const newBox = {
 				text: item.text || `TextBox ${textBoxes.length + 1}`,
