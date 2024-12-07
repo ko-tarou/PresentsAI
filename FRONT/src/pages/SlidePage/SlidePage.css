@@ -40,6 +40,8 @@
 
 /* メインスライドエリア */
 .main-slide {
+  position: relative;
+  overflow: hidden;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   background-color: #ffffff;
