@@ -22,7 +22,7 @@ const Modal = ({ isOpen, onClose }) => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="modal-close-button" onClick={onClose}>×</button>
                 <h3>説明書</h3>
-                <p>使い方ここに書く（行によって×ボタンの位置変更いる）</p>
+                <p>AI機能を活用し、音声認識によって発表のサポートを行うサービスです ⍩⃝</p>
             </div>
         </div>
     );

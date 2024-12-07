@@ -10,13 +10,22 @@ import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
 import ButtonSave from './components/button/ButtonSave/ButtonSave.js';
 import WaitPage from './pages/WaitPage/WaitPage.js';
 import Audio from './pages/audio/AudioRecognition.js';
+import PresenterPage from './pages/PresenterPage/PresenterPage.js'; 
+import ViewerPage from './pages/ViewerPage/ViewerPage.js';
 
 const Header = () => {
   const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);  
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const hiddenPaths = ['/presenter', '/viewer'];
+
+  // Header を特定のパスで非表示
+  if (hiddenPaths.includes(location.pathname)) {
+    return null;
+  }
 
   return (
     <header>
@@ -31,7 +40,7 @@ const Header = () => {
           <button className="search-button">検索</button>
         </div>
       )}
-      {['/slidepage/'].includes(location.pathname) && (
+      {['/slidepage'].includes(location.pathname) && (
         <ButtonSave />
       )}
       
@@ -52,6 +61,10 @@ function App() {
         <Route path="/Ana" element={<AnalysisPage />} />
         <Route path="/Wait" element={<WaitPage />} />
         <Route path="/audio" element={<Audio />} />
+        <Route path="/presenter" element={<PresenterPage />} />
+        <Route path="/viewer" element={<ViewerPage />} />
+        {/* デフォルトルートを追加 */}
+        <Route path="*" element={<TopPage />} />
       </Routes>
     </Router>
   );
