@@ -1,21 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: auto; 
+    height: 100%;
+    background-color: #ffffff;
+}
+
 .SlideView {
     display: flex;
     flex-direction: row;
     overflow: auto;
     height: 88vh;
+    background-color: #ffffff;
 }
 
 .leftside {
-    flex: 2; /* 全体の2割の高さ */
-    background-color: #f6f8f9; /* 背景色 */
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-field-leftside {
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 20px;
+    border-radius: 4px;
+}
+
+.search-field-leftside:focus {
+    box-shadow: 0 0 5px rgba(255, 241, 241, 0.5);
+}
+
+.search-button-leftside {
+    padding: 5px 10px;
+    margin-left: 10px;
+    color: white;
+    border: none;
+    background-color: #ba6868;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-button-leftside:hover {
+    background-color: #9a5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.search-button-leftside:active {
+    background-color: #5d2c2c;
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .rightside {
-    flex: 8; /* 全体の8割の高さ */
-    background-color: #ffffff; /* 背景色 */
+    flex: 8;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,27 +72,26 @@
 
 .box-whole {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3列のグリッド */
-    gap: 5%; /* 各ボックス間の間隔 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
     width: 100%;
-    max-width: none; /* 最大幅を制限しない */
+    max-width: none;
     margin-left: 5%;
     
 }
 
 /* 各ボックス */
 .box {
-    background-color: #8c7b76; /* ボックスの背景色 */
-    border-radius: 4px; /* 角丸 */
-    aspect-ratio: 16 / 9; /* 横16：縦9の比率を設定 */
-    width: 90%; /* 幅をグリッドに応じて設定 */
+    background-color: #8c7b76;
+    border-radius: 4px;
+    aspect-ratio: 16 / 9;
+    width: 90%;
 }
 body{
     margin: 0;
     padding: 0;
     overflow: auto; 
-    height: 100%; /* 要素が画面全体を覆うように設定 */
-
+    height: 100%;
 }
 
 .button {
