@@ -46,6 +46,10 @@ const PresenterPage = () => {
         alt="プレゼン画像"
         className="presenter-image"
       />
+      {/* 横長のボックス追加 */}
+      <div className="horizontal-box">
+        ここに横長のボックス内容を追加
+      </div>
     </div>
   );
 };
