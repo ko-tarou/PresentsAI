@@ -3,7 +3,6 @@ body {
     padding: 0;
     overflow: auto; 
     height: 100%;
-    background-color: #ffffff;
 }
 
 .SlideView {
@@ -11,13 +10,10 @@ body {
     flex-direction: row;
     overflow: auto;
     height: 88vh;
-    background-color: #ffffff;
 }
 
 .leftside {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    padding-top: 15px;
 }
 
 .search-field-leftside {
@@ -41,7 +37,7 @@ body {
     margin-left: 10px;
     color: white;
     border: none;
-    background-color: #ba6868;
+    background-color: #6f68ba;
     border-radius: 4px;
     font-size: 16px;
     font-family: 'Arial', sans-serif;
@@ -51,24 +47,23 @@ body {
 }
 
 .search-button-leftside:hover {
-    background-color: #9a5252;
+    background-color: #52589a;
     transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .search-button-leftside:active {
-    background-color: #5d2c2c;
+    background-color: #2c2e5d;
     transform: translateY(2px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .rightside {
     flex: 8;
-    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 10%;
+    padding-top: 20%;
 }
 
 .box-whole {
@@ -83,11 +78,21 @@ body {
 
 /* 各ボックス */
 .box {
-    background-color: #8c7b76;
+    background-color: #767e8c;
     border-radius: 4px;
     aspect-ratio: 16 / 9;
     width: 90%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 影をつけて浮いている感じを出す */
+    transform: translateY(-4px); /* 少し上に浮かせる */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* アニメーションで動きを加える */
 }
+
+/* ホバー時の効果を加える */
+.box:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* さらに大きな影をつけて強調 */
+    transform: translateY(-6px); /* 少し浮き上がった感じを強調 */
+}
+
 body{
     margin: 0;
     padding: 0;

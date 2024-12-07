@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef,useContext } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useNavigate } from 'react-router-dom';
 import "./SlidePage.css";
 import TabContent from "../../components/Tab/TabContent.js";
 import DropZone from '../../components/SlidePage/DropZone/DropZone.js';
@@ -18,6 +19,7 @@ import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
 import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
 import domtoimage from 'dom-to-image';
 import SlideList from '../../components/SlidePage/SlideList/SlideList.js';
+import { ImageContext } from '../ImageContext.js';
 
 function Slidepage() {
 	const [activeTab, setActiveTab] = useState("tab1");
@@ -27,6 +29,8 @@ function Slidepage() {
 	const [comment, setComment] = useState(""); // コメントの内容
 	const [isTyping, setIsTyping] = useState(false); // ユーザーが入力中かどうかを管理
 	const mainSlideRef =useRef(null);
+	const navigate = useNavigate();
+	const { setImageData } = useContext(ImageContext);
 
 	useEffect(() => {
 		const unsubscribe = subscribeToComment((fetchedComment) => {
@@ -58,19 +62,25 @@ function Slidepage() {
 	}, [selectedBoxId]);
 	
 	//画像保存するよ
-	const handleSaveImage = async () => {
-		if(mainSlideRef.current){
-			try{
-				const dataUrl = await domtoimage.toPng(mainSlideRef.current);
-				const link = document.createElement('a');
-				link.href = dataUrl;
-				link.download = 'main-slide.png';
-				link.click();
-				} catch (error) {
-					console.error('キャプチャエラー:', error);
-			}
-		}
-	};
+	const handleGenerateAndMove = async () => {
+        if (mainSlideRef.current) {
+            try {
+                const dataUrl = await domtoimage.toPng(mainSlideRef.current);
+
+                // Contextに画像データを保存
+                setImageData(dataUrl);
+
+                // 別ページに移動
+                navigate('/presen');
+            } catch (error) {
+                console.error('キャプチャエラー:', error.message);
+                alert('画像の生成に失敗しました。再試行してください。');
+            }
+        } else {
+            alert('キャプチャ対象の要素が見つかりません。');
+        }
+    };
+
 	// テキストボックスを移動
 	const handleBoxMove = async (id, newPosition) => {
 		await updateTextBox(id, { x: newPosition.x, y: newPosition.y });
@@ -123,6 +133,9 @@ function Slidepage() {
 				<div className='content'>
 					<div className='left-sidebar'>
 						<TabContent activeTab={activeTab} />
+						<button onClick={handleGenerateAndMove}>
+							保存
+						</button>
 					</div>
 						<div 
 							className='main-slide' 

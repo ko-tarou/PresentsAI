@@ -62,9 +62,13 @@ const SlideView = () => {
               className={`box-container`}
               key={box.id}
             >
-              <div className={`box ${
-                isSearched && box.name === searchQuery ? "highlight" : ""
-              }`}>
+              <div
+                className={`box ${
+                  isSearched && searchQuery !== "" && box.name === searchQuery
+                    ? "highlight"
+                    : ""
+                }`}
+              >
                 <input
                   type="text"
                   value={box.name}
@@ -72,7 +76,7 @@ const SlideView = () => {
                   className="box-name-input"
                   placeholder="名前を入力"
                 />
-							</div>
+              </div>
               <div className="button-group">
                 <button className="button feedback-button">💬</button>
                 <button
