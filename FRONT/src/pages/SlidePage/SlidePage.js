@@ -133,13 +133,14 @@ function Slidepage() {
 				<div className='content'>
 					<div className='left-sidebar'>
 						<TabContent activeTab={activeTab} />
-						<button onClick={handleGenerateAndMove}>
-							保存
-						</button>
+						{/* 保存ボタンを左サイドバー内に配置 */}
+							<button onClick={handleGenerateAndMove}>
+								保存
+							</button>
 					</div>
 						<div 
 							className='main-slide' 
-							tyle={{ position: 'relative', height: '100%' }}
+							style={{ position: 'relative', height: '100%' }}
 							ref={mainSlideRef}
 						>
 						<KeyboardHandler
