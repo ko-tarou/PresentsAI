@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./SlideView.css";
+import { FaStar } from "react-icons/fa";
 
 const SlideView = () => {
   const initialBoxes = Array.from({ length: 12 }).map((_, index) => ({
     id: index,
     content: `Box ${index + 1}`,
     name: "", // 初期名前なし
+    isPinned: false, // 初期状態はピン留めされていない
+    originalIndex: index, // 初期順序を記録
   }));
 
   const [boxes, setBoxes] = useState(initialBoxes);
@@ -14,9 +17,20 @@ const SlideView = () => {
 
   // ピン留め処理
   const handlePin = (id) => {
-    const selectedBox = boxes.find((box) => box.id === id);
-    const remainingBoxes = boxes.filter((box) => box.id !== id);
-    setBoxes([selectedBox, ...remainingBoxes]);
+    const updatedBoxes = boxes.map((box) =>
+      box.id === id ? { ...box, isPinned: !box.isPinned } : box
+    );
+
+    const pinnedBoxes = updatedBoxes.filter((box) => box.isPinned);
+    const unpinnedBoxes = updatedBoxes.filter((box) => !box.isPinned);
+
+    // 元の順序で未ピン留めボックスをソート
+    const sortedUnpinnedBoxes = unpinnedBoxes.sort(
+      (a, b) => a.originalIndex - b.originalIndex
+    );
+
+    // ピン留めされたボックスを上、未ピン留めをその後に配置
+    setBoxes([...pinnedBoxes, ...sortedUnpinnedBoxes]);
   };
 
   // 名前変更処理
@@ -58,10 +72,7 @@ const SlideView = () => {
       <div className="rightside">
         <div className="box-whole">
           {boxes.map((box) => (
-            <div
-              className={`box-container`}
-              key={box.id}
-            >
+            <div className="box-container" key={box.id}>
               <div
                 className={`box ${
                   isSearched && searchQuery !== "" && box.name === searchQuery
@@ -80,10 +91,10 @@ const SlideView = () => {
               <div className="button-group">
                 <button className="button feedback-button">💬</button>
                 <button
-                  className="button pin-button"
+                  className="button in-button"
                   onClick={() => handlePin(box.id)}
                 >
-                  ⭐
+                  {box.isPinned ? <FaStar className="i-star"/> : <FaStar className="ci-star" />}
                 </button>
                 <button className="button create-button">➕</button>
               </div>

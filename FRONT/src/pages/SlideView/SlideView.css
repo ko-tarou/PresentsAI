@@ -137,3 +137,25 @@ body{
     transition: box-shadow 0.3s ease; /* 滑らかなアニメーション */
 }
 
+.in-button {
+    color: #ccc;
+    font-size: 15px;
+    padding-top: 5px;
+}
+
+.ci-star {
+    font-size: 19px; /* アイコンの大きさを調整 */
+    color: #ccc; /* デフォルトの色を設定 */
+}
+
+.ci-star:hover {
+    font-size: 19px; /* アイコンの大きさを調整 */
+    color: #f2ff00; /* デフォルトの色を設定 */
+}
+
+.i-star{
+    color: #f2ff00;
+    font-size: 19px;
+}
+
+
