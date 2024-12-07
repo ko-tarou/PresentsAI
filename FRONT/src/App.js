@@ -10,6 +10,7 @@ import AnalysisPage from './pages/AnalysisPage/AnalysisPage.js';
 import ButtonSave from './components/button/ButtonSave/ButtonSave.js';
 import WaitPage from './pages/WaitPage/WaitPage.js';
 import Audio from './pages/audio/AudioRecognition.js';
+import PresenterPage from './pages/PresenterPage/PresenterPage.js';  // 新しいパスでインポート
 
 const Header = () => {
   const location = useLocation();
@@ -52,6 +53,7 @@ function App() {
         <Route path="/Ana" element={<AnalysisPage />} />
         <Route path="/Wait" element={<WaitPage />} />
         <Route path="/audio" element={<Audio />} />
+        <Route path="/presenter" element={<PresenterPage />} />
       </Routes>
     </Router>
   );
