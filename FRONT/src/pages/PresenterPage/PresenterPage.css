@@ -43,6 +43,7 @@
   border-radius: 8px;
   margin-top: 20px; /* 上に余白を追加して画像と一致させる */
   margin-bottom: 20px;
+  border: 2px solid white; /* 白色の枠線を追加 */
 }
 
 /* タイマー関連のスタイル */
@@ -113,6 +114,7 @@
   margin-top: 150px; /* 追加: 上部からの余白を調整 */
   margin-left: 5%; /* 右側のエリアを右寄せするために左マージンを調整 */
   height: 100%; /* 高さをコンテナに合わせる */
+  border: 2px solid white; /* 白色の枠線を追加 */
 }
 
 /* 音声認識ボタンのスタイル */
@@ -172,4 +174,5 @@
   align-items: center;
   color: white;
   font-size: 1.5rem;
+  border: 2px solid white; /* 白色の枠線を追加 */
 }
