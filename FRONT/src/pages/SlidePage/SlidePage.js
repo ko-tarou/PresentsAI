@@ -147,6 +147,6 @@ function Slidepage() {
 			</div>
 		</DndProvider>
 	);
-
+}
 
 export default Slidepage;
