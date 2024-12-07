@@ -1,10 +1,29 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./PresenterPage.css";
+import { subscribeToComment,saveComment } from "../../firebase/realtimeService";
 
 const PresenterPage = () => {
+  const [comment, setComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   const imageRef = useRef(null);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToComment((retrievedComment) => {
+      setComment(retrievedComment || "コメント");
+    });
+    return () => unsubscribe();
+  }, []);
+  
+  const handleSaveComment = async () => {
+    try {
+      await saveComment(newComment);
+      setNewComment("");
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+  }
 
   const handleReset = () => {
     setTime(0);
@@ -68,7 +87,7 @@ const PresenterPage = () => {
             });
 
             // 音声認識の結果をGPTに送信
-            await sendToChatGPT(recognizedText);
+            await sendToChatGPT("全体のプレゼンの内容はこれ「"+comment+"」。今、「"+recognizedText+"」ここまで話した。次に話すべき内容は？");
           }
         }
       };
@@ -132,7 +151,7 @@ const PresenterPage = () => {
           className="presenter-image"
         />
         <div className="horizontal-box">
-          ここに横長のボックス内容を追加
+          {comment}
         </div>
       </div>
        {/* 音声認識ボタン */}
