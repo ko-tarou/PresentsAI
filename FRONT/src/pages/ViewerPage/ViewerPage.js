@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import './ViewerPage.css'; // 必要に応じてCSSでスタイルを調整
 import { ImageContext } from '../ImageContext';
 
 const ViewerPage = () => {
   const [showTaskbar, setShowTaskbar] = useState(false); // タスクバー表示状態
   const taskbarHeight = 50; // タスクバーの高さ
+  const {imageData} = useContext(ImageContext)
   
   // タスクバーの表示・非表示を制御
   useEffect(() => {
