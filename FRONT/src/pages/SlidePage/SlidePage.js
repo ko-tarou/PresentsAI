@@ -9,6 +9,7 @@ import { io } from "socket.io-client";
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
 import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
+import ZindexBox from '../../components/SlidePage/TextBox/ZindexBox.js';
 
 const socket = io("https://1d32-202-13-166-100.ngrok-free.app"); // サーバーのURLに合わせて変更
 
@@ -98,6 +99,13 @@ function Slidepage() {
 					<TabContent activeTab={activeTab} />
 				</div>
 				<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
+				<ZindexBox
+					selectedBoxId={selectedBoxId}
+					isTextBoxFocused={isTextBoxFocused}
+					setTextBoxes={setTextBoxes}
+					socket={socket}
+					setSelectedBoxId={setSelectedBoxId}
+				/>
 				<KeyboardHandler
 					selectedBoxId={selectedBoxId}
 					isTextBoxFocused={isTextBoxFocused}

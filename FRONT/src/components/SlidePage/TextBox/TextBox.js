@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../DropZone/ItemTypes.js';
 
-function TextBox({ id, text, x, y, onTextChange, fontSize,onSelect, onFocus, onBlur, transform, ...props}) {
+function TextBox({ id, text, x, y, onTextChange, fontSize, onSelect, onFocus, onBlur, zIndex, transform, ...props}) {
 const [value, setValue] = useState(text || "");
 const [size, setSize] = useState({ width: 100, height: 50 });
 const [isEditing, setIsEditing] = useState(false); // 新しく追加
@@ -93,6 +93,7 @@ return (
 		position: 'absolute',
 		left: x,
 		top: y,
+		zIndex : `${zIndex}`,
 		transform: `translate(-50%, -50%) rotate(${props.rotate || 0}deg)`,
 	}}
 	>
@@ -109,6 +110,7 @@ return (
 			border: 'none',
 			outline: 'none',
 			fontSize: `${fontSize || 16}px`,
+			zIndex: (box.zIndex || 50)
 		}}
 		/>
 	) : (
