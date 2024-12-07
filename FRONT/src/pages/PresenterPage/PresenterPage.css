@@ -65,7 +65,7 @@
 }
 
 /* ボタン全体のデザイン */
-.button-group button {
+.button-group .button {
   background-color: #3a3e59;  /* ボタンの背景色 */
   color: white;  /* 文字色 */
   border: 2px solid #fff;  /* 白色の枠線 */
