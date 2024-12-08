@@ -5,8 +5,23 @@ import { ImageContext } from '../ImageContext';
 const ViewerPage = () => {
   const [showTaskbar, setShowTaskbar] = useState(false); // タスクバー表示状態
   const taskbarHeight = 50; // タスクバーの高さ
-  const {imageData} = useContext(ImageContext)
+  const {imageData,setImageDate} = useContext(ImageContext)
+
+  const [IsFirstImage, setIsFirstImage] = useState(true);
   
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      setIsFirstImage((prev) => !prev);
+    }}
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, []);
+
   // タスクバーの表示・非表示を制御
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -43,7 +58,11 @@ const ViewerPage = () => {
   return (
     <div className="viewer-container">
 	    {imageData ? (
-				<img src={imageData} alt="プレゼンスライド" className='viewer-image'/>
+				<img 
+          src={IsFirstImage ? imageData : '/img/image.png'} 
+          alt="プレゼンスライド" 
+          className='viewer-image'
+        />
 			) : (
 				<p>画像データがありません。</p>
 			)}
