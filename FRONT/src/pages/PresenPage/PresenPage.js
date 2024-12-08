@@ -95,7 +95,7 @@ const PresenPage = () => {
       <div className="slide-container">
         <div ref={slideRef} className={`slide ${isFullscreen ? 'fullscreen' : ''}`}>
           {/* <img src="/img/169.png" alt="プレゼンスライド" /> */}
-		    {imageData ? (
+		      {imageData ? (
             <img src={imageData} alt="プレゼンスライド"/>
           ) : (
             <p>画像データがありません。</p>

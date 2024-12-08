@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,useContext } from "react";
 import "./PresenterPage.css";
 import { subscribeToComment,saveComment } from "../../firebase/realtimeService";
+import { ImageContext } from "../ImageContext"; 
 
 const PresenterPage = () => {
   const [comment, setComment] = useState("");
@@ -8,6 +9,28 @@ const PresenterPage = () => {
   const imageRef = useRef(null);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const { imageData, setImageData } = useContext(ImageContext);
+
+  const [isFirstImage, setIsFirstImage] = useState(true);
+
+  useEffect(() => {
+    if (!imageData) {
+      // 画像データが未設定の場合にデフォルトの画像を設定
+      setImageData('/img/169.png');
+    }
+  }, [imageData, setImageData]);  
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        setIsFirstImage((prev) => !prev);
+      }}
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, []);
 
   useEffect(() => {
     const unsubscribe = subscribeToComment((retrievedComment) => {
@@ -157,12 +180,15 @@ return (
             </button>
           </div>
         </div>
-        <img
-          ref={imageRef}
-          src="/img/169.png"
-          alt="プレゼン画像"
-          className="presenter-image"
-        />
+		    {imageData ? (
+				<img
+					src={isFirstImage ? "/img/image.png" : "/img/169.png"}
+					alt="プレゼン画像"
+					className="presenter-image"
+				/>
+				) : (
+				<p>画像が読み込まれていません。</p>
+				)}
         <div className="horizontal-box">
           {comment}
         </div>
@@ -180,7 +206,13 @@ return (
       </div>
       {/* 中央の比率16:9のボックス */}
       <div className="middle-box">
-        <div className="box"></div>
+        <div className="box">
+          <img
+            src={isFirstImage ? "/img/169.png" : "/img/image.png"}
+            alt="プレゼン画像"
+            className="presenter-image"
+          />
+        </div>
         <div className="box"></div>
         <div className="box"></div>
       </div>
