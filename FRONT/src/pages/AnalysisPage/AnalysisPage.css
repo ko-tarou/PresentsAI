@@ -7,16 +7,22 @@ body {
 
 /* AnalysisPageのルート要素 */
 .AnalysisPage {
-    padding: 20px;
+    padding: 25px; /* paddingを少し広げて余白を調整 */
     background-color: #1e1e2f; /* TopPage.css と同じ暗いベース色 */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 立体感を強調 */
-    max-width: 900px;
-    margin: 3px auto;
+    max-width: 900px; /* 横幅を少し広げる */
+    width: 100%; /* 親要素に合わせて幅を100%に */
+    margin-left: 20px; /* 左に寄せる */
     font-family: 'Arial', sans-serif; 
-    height: 72vh;
+    height: 72vh; /* 高さを固定 */
     color: #e0e0e0; /* 文字色を明るい色に変更 */
+    display: flex;
+    flex-direction: column; /* flexで子要素を縦に並べる */
+    margin-right: 50px;
 }
+
+
 
 /* タイトルのスタイル */
 .AnalysisPage h2 {
@@ -29,20 +35,25 @@ body {
 /* コンテンツエリアのスタイル */
 .AnalysisPage .content {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: stretch; /* 要素が同じ高さになるように調整 */
+    justify-content: flex-end; /* 右寄せに変更 */
+    height: 100%; /* 親の高さに合わせる */
 }
 
 /* 説明欄のスタイル */
 .description {
-    flex: 1;
-    margin-right: 20px;
+    text-align: left;
+    flex: 1; /* flexを1にして他の要素とのバランスを取る */
     background: #2c3e50; /* 暗い青色に変更 */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* シャドウを強調 */
+    height: 73.2vh; /* 縦幅を80%のビューポートに設定 */
+    max-width: 800px; /* 横幅を広げる */
 }
 
+
+/* 説明欄のヘッダー */
 .description h3 {
     margin-bottom: 10px;
     color: #ecf0f1; /* 視認性を高めるために明るい文字色に */
@@ -71,13 +82,13 @@ body {
     align-items: center;
     max-width: 400px;
     margin-top: -5%; 
+    height: 100%; /* 高さを親と合わせる */
 }
 
 .chart canvas {
     width: 100% !important;
     height: auto !important; 
 }
-
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
@@ -88,6 +99,8 @@ body {
     .description {
         margin-right: 0;
         margin-top: 10px;
+        max-width: 100%; /* 小さい画面で最大幅を使用 */
+        margin-left: 0;
     }
 
     .chart {
@@ -99,6 +112,7 @@ body {
     padding: 2em;
     background-image: linear-gradient(0deg, transparent 19px, #ccc 20px), linear-gradient(90deg, transparent 19px, #ccc 20px);
     background-size: 20px 20px;
+    display: flex;
 }
 
 .result {
@@ -107,3 +121,34 @@ body {
     border: 6px double #404658;
     width: 130px;
 }
+.scoreDetails {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+ /* 新しい平均スコアのボックス */
+.average-score-box {
+    margin-right: 30px;
+    display: flex;
+    align-self: flex-start;  /* 親要素の設定に依存せず、この要素を上部に寄せる */
+    width: 350px; /* 横幅 */
+    height: 400px; /* 明示的に高さを指定（paddingではなく高さで調整） */
+    padding: 20px;
+    background-color: #2c3e50;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column; /* 縦に並べる */
+    gap: 1px; /* 各要素の間隔を設定 */
+  }
+  
+  
+  
+  .average-score-box h3 {
+    color: #f8f9fa;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
