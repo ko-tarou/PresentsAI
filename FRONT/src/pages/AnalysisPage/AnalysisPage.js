@@ -24,7 +24,7 @@ function AnalysisPage() {
   const navigate = useNavigate(); // useNavigateフックを呼び出し
 
   const handleClose = () => {
-    navigate('/SlidePage'); // SlidePageへの遷移
+    navigate('/slideview'); // SlidePageへの遷移
   };
 
   const questionsLabels = [
@@ -37,11 +37,11 @@ function AnalysisPage() {
 
   // 質問を5つに変更
   const questions = [
-    `アドバイスを100文字以内でください。発表の声の大きさの点数が100点中${scores[0]}だった。`,
-    `アドバイスを100文字以内でください。発表の声のトーンの点数が100点中${scores[1]}点だった。`,
-    `アドバイスを100文字以内でください。発表の話すスピードの点数が100点中${scores[2]}点だった。`,
-    `アドバイスを100文字以内でください。発表の詰まった回数の点数が100点中${scores[3]}点だった。`,
-    `アドバイスを100文字以内でください。発表の話の適切さの点数が100点中${scores[4]}点だった。`,
+    `アドバイスを50文字以内でください。発表の声の大きさの点数が100点中${scores[0]}だった。`,
+    `アドバイスを50文字以内でください。発表の声のトーンの点数が100点中${scores[1]}点だった。`,
+    `アドバイスを50文字以内でください。発表の話すスピードの点数が100点中${scores[2]}点だった。`,
+    `アドバイスを50文字以内でください。発表の詰まった回数の点数が100点中${scores[3]}点だった。`,
+    `アドバイスを50文字以内でください。発表の話の適切さの点数が100点中${scores[4]}点だった。`,
   ];
 
   // 質問をChatGPTに送信（同期的に動作する形で管理）
@@ -53,7 +53,7 @@ function AnalysisPage() {
 
       // 質問のインデックスを順番に処理
       for (let i = 0; i < questions.length; i++) {
-        const res = await fetch('https://a433-153-221-223-4.ngrok-free.app/api/chatgpt', {
+        const res = await fetch('http://localhost:5000/api/chatgpt', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt: questions[i] }), // 質問を送信
