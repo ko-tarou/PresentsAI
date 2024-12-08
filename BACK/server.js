@@ -35,7 +35,7 @@ app.post('/api/chatgpt', async (req, res) => {
           { role: 'system', content: 'あなたは親切なアシスタントです。' }, // システムメッセージ
           { role: 'user', content: prompt }, // ユーザーメッセージ
         ],
-        max_tokens: 100, // 応答のトークン数の制限
+        max_tokens: 200, // 応答のトークン数の制限
         temperature: 0.7, // 応答の創造性を制御
     	},
       {
