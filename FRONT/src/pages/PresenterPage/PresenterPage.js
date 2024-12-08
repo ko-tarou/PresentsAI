@@ -220,7 +220,7 @@ return (
       {/* 右側のエリア */}
       <div className="right-area">
           <h3>ChatGPTの応答:</h3>
-          <p>{response}</p>
+          <h1>{response}</h1>
         </div>
       </div>
   );
