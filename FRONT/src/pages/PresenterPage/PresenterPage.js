@@ -87,7 +87,7 @@ const PresenterPage = () => {
             });
 
             // 音声認識の結果をGPTに送信
-            await sendToChatGPT("全体のプレゼンの内容はこれ「"+comment+"」。今、「"+recognizedText+"」ここまで話した。次に話すべき内容は？");
+            await sendToChatGPT("全体のプレゼンの内容はこれ「"+comment+"」。今、「"+recognizedText+"」ここまで話した。次に話すべき言葉10文字以内で答えて");
           }
         }
       };
