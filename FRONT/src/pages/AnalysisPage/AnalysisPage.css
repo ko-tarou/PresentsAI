@@ -5,22 +5,23 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* AnalysisPageのルート要素 */
 .AnalysisPage {
-    padding: 25px; /* paddingを少し広げて余白を調整 */
-    background-color: #1e1e2f; /* TopPage.css と同じ暗いベース色 */
+    position: relative; /* 子要素を絶対配置する基点 */
+    padding: 25px;
+    background-color: #1e1e2f;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 立体感を強調 */
-    max-width: 900px; /* 横幅を少し広げる */
-    width: 100%; /* 親要素に合わせて幅を100%に */
-    margin-left: 20px; /* 左に寄せる */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    width: 100%;
+    margin-left: 20px;
     font-family: 'Arial', sans-serif; 
-    height: 72vh; /* 高さを固定 */
-    color: #e0e0e0; /* 文字色を明るい色に変更 */
+    height: 72vh;
+    color: #e0e0e0;
     display: flex;
-    flex-direction: column; /* flexで子要素を縦に並べる */
+    flex-direction: column;
     margin-right: 50px;
 }
+
 
 
 
@@ -89,6 +90,57 @@ body {
     width: 100% !important;
     height: auto !important; 
 }
+.Closebutton {
+    position: absolute; /* 絶対配置 */
+    top: 10px; /* 上端からの距離 */
+    right: 10px; /* 右端からの距離 */
+    background-color: #404658; /* ボックスと調和する背景色 */
+    color: #f8f9fa; /* 明るい文字色で視認性を向上 */
+    border: 2px solid #52597b; /* ボタンの枠線 */
+    border-radius: 8px; /* 角を丸める */
+    padding: 8px 16px; /* ボタン内の余白 */
+    font-size: 14px; /* フォントサイズをやや小さく */
+    font-family: 'Arial', sans-serif; /* 一貫したフォントスタイル */
+    cursor: pointer; /* ポインタを表示 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* ホバー時の動き */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 軽い浮遊感 */
+}
+
+.Closebutton:hover {
+    background-color: #52597b; /* ホバー時に少し明るく */
+    transform: scale(1.05); /* 少し拡大 */
+}
+
+.Closebutton:active {
+    background-color: #2c3e50; /* 押されたときに暗く */
+    transform: scale(0.98); /* 押された感を演出 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を小さく */
+}
+.description-botton {
+    top: 10px; /* 上端からの距離 */
+    right: 10px; /* 右端からの距離 */
+    background-color: #404658; /* ボックスと調和する背景色 */
+    color: #f8f9fa; /* 明るい文字色で視認性を向上 */
+    border: 2px solid #52597b; /* ボタンの枠線 */
+    border-radius: 8px; /* 角を丸める */
+    padding: 8px 16px; /* ボタン内の余白 */
+    font-size: 14px; /* フォントサイズをやや小さく */
+    font-family: 'Arial', sans-serif; /* 一貫したフォントスタイル */
+    cursor: pointer; /* ポインタを表示 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* ホバー時の動き */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 軽い浮遊感 */
+}
+.description-botton:hover {
+    background-color: #52597b; /* ホバー時に少し明るく */
+    transform: scale(1.05); /* 少し拡大 */
+}
+
+.description-botton:active {
+    background-color: #2c3e50; /* 押されたときに暗く */
+    transform: scale(0.98); /* 押された感を演出 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を小さく */
+}
+
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {

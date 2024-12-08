@@ -1,6 +1,7 @@
 import './AnalysisPage.css';
 import React, { useState } from 'react';
 import { Radar } from 'react-chartjs-2';  // Radarコンポーネントをインポート
+import { useNavigate } from 'react-router-dom'; // useNavigateをインポート
 
 // 必要なチャート設定
 import {
@@ -20,6 +21,11 @@ function AnalysisPage() {
   const [responses, setResponses] = useState([]); // 複数の回答を保持
   const [loading, setLoading] = useState(false); // ローディング状態を管理
   const [scores] = useState([50, 30, 20, 10, 50]); // 初期スコアを[50, 30, 20, 10, 50]として設定
+  const navigate = useNavigate(); // useNavigateフックを呼び出し
+
+  const handleClose = () => {
+    navigate('/SlidePage'); // SlidePageへの遷移
+  };
 
   const questionsLabels = [
     "声の大きさ",
@@ -120,6 +126,7 @@ function AnalysisPage() {
       <div className="AnalysisPage">
         <div className="result">
           <h2>✔ 結果発表</h2>
+          <button className='Closebutton' onClick={handleClose}>閉じる</button>
         </div>
         <div className="content">
             {/* 平均スコア表示ボックス */}
@@ -140,11 +147,11 @@ function AnalysisPage() {
       </div>
 
       <div className="description">
-        <button 
-          onClick={sendToChatGPT} 
+        <button className='description-botton'
+          onClick={sendToChatGPT}
           disabled={loading} // ローディング中は無効
         >
-          {loading ? '処理中...' : '質問を送信'}
+          {loading ? '処理中...' : '詳細を表示'}
         </button>
 
         {/* 各質問とその応答をリストとして表示 */}
