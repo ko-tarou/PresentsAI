@@ -101,6 +101,7 @@ const PresenterPage = () => {
   };
 
   const stopDetection = () => {
+    // 音声認識と録音を停止
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }
@@ -110,8 +111,18 @@ const PresenterPage = () => {
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop());
     }
+  
+    // 前のタブにアクセスしてURLを変更
+    if (window.opener && !window.opener.closed) {
+      window.opener.location.href = '/Ana'; // 前のタブで /Ana を開く
+    } else {
+      console.warn('前のタブが存在しないか、アクセスできません');
+    }
+  
+    // 状態を更新
     setStatus('ready');
   };
+  
 
   const sendToChatGPT = async (text) => {
     try {
@@ -131,6 +142,8 @@ const PresenterPage = () => {
     }
   };
 
+  
+  
   return (
     <div className="presenter-container">
       {/* 左側のエリア */}
