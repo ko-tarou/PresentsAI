@@ -1,58 +1,178 @@
+/* プレゼンターコンテナ全体のスタイル */
 .presenter-container {
-    position: relative; /* 相対位置の親要素 */
-    width: 100vw; /* ページ全幅 */
-    height: 100vh; /* ページ全高 */
-    background-color: #1e1e2f; /* 背景色は必要に応じて変更 */
-    overflow: hidden;
-  }
-  
-  .presenter-image {
-    width: 50%; /* 画像の幅をページ幅の50%に調整 */
-    height: auto; /* アスペクト比を維持 */
-    max-height: 50%; /* 高さをページ高さの50%以内に制限 */
-    object-fit: contain; /* 画像をアスペクト比を保ちながら収める */
-    margin-top: 100px; /* 上に余白を追加して下げる */
-    margin-left: 60px;
-    pointer-events: none; /* クリックイベントを無効化 */
-    user-select: none; /* 画像の選択を無効化 */
-    border: none;
-    outline: none;
+  display: flex; /* 横並びのレイアウト */
+  justify-content: space-between; /* 子要素を均等に配置 */
+  position: relative;
+  width: 90vw;
+  height: 85vh;
+  background-color: #1e1e2f;
+  overflow: hidden;
+  padding: 50px; /* 内側に余白を追加 */
 }
 
-  .timer-container {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .time-display {
-    font-size: 2rem;
-  }
-  
-  .button-group {
-    margin-top: 10px;
-  }
-  
-  .reset-button, .play-button {
-    font-size: 1.5rem;
-    margin: 0 10px;
-  } 
+/* 左側のエリア */
+.left-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 70%; /* 左側の幅を調整 */
+}
 
-  .presenter-image:focus {
-    outline: none; /* フォーカス時のアウトラインもリセット */
-  }
+/* 画像のスタイル */
+.presenter-image {
+  width: 100%; /* 幅を100%にして、親要素であるleft-areaに合わせる */
+  height: auto;
+  max-height: 50%; /* 高さを50%以内に制限 */
+  object-fit: contain;
+  margin-top: 20px;
+  pointer-events: none;
+  user-select: none;
+  border: none;
+}
 
-  .horizontal-box {
-    width: 50%;
-    height: 130px; /* 高さ調整 */
-    background-color: #4CAF50; /* 背景色 */
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    border-radius: 8px; /* 角を丸くする */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* シャドウ */
-    margin-left: 60px;
-    border: none;
-    outline: none;
-  }
+/* 横長のボックスのスタイル */
+.horizontal-box {
+  width: 100%; /* 幅を100%に設定して、画像と同じ幅にする */
+  height: 100px;
+  background-color: #3a3e59b9;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  margin-top: 20px; /* 上に余白を追加して画像と一致させる */
+  margin-bottom: 20px;
+  border: 2px solid white; /* 白色の枠線を追加 */
+}
+
+/* タイマー関連のスタイル */
+.timer-container {
+  display: flex; /* 横並びのレイアウト */
+  align-items: center; /* 中央揃え */
+  justify-content: center; /* ボタンとタイマーを中央に配置 */
+  gap: 15px; /* タイマーとボタン間のスペース */
+  margin-bottom: 20px;
+}
+
+.time-display {
+  font-size: 4rem;
+}
+
+.button-group {
+  display: flex;  /* 横並びにするためのflexbox */
+  gap: 15px;  /* ボタン間の余白 */
+  justify-content: center;  /* ボタンを中央に配置 */
+}
+
+/* ボタン全体のデザイン */
+.button-group .button {
+  background-color: #3a3e59;  /* ボタンの背景色 */
+  color: white;  /* 文字色 */
+  border: 2px solid #fff;  /* 白色の枠線 */
+  padding: 15px 20px;  /* パディング（ボタンのサイズ） */
+  border-radius: 50%;  /* 丸型にする */
+  font-size: 2.0rem;  /* アイコンサイズを調整 */
+  cursor: pointer;  /* カーソルをポインタに */
+  transition: all 0.3s ease;  /* エフェクトのトランジション */
+  width: 60px;  /* 幅を固定 */
+  height: 60px;  /* 高さを固定 */
+  display: flex;
+  justify-content: center;
+  align-items: center;  /* アイコンが中央に来るように */
+}
+
+.button-group button:disabled {
+  background-color: #666;  /* 無効時の背景色 */
+  border-color: #444;  /* 無効時の枠線色 */
+  cursor: not-allowed;  /* クリック不可カーソル */
+}
+
+.button-group button:hover:enabled {
+  background-color: #5a5f7a;  /* ホバー時の背景色 */
+  border-color: #ffffff;  /* ホバー時の枠線色 */
+}
+
+.button-group button:active:enabled {
+  background-color: #4c5070;  /* クリック時の背景色 */
+  transform: scale(0.95);  /* クリック時に少し縮む */
+}
+
+/* 右側のエリア */
+.right-area {
+  width: 60%;
+  height: auto;
+  max-height: 50%;
+  background-color: #2f2f3a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 上揃え */
+  margin-top: 150px; /* 追加: 上部からの余白を調整 */
+  margin-left: 5%; /* 右側のエリアを右寄せするために左マージンを調整 */
+  height: 100%; /* 高さをコンテナに合わせる */
+  border: 2px solid white; /* 白色の枠線を追加 */
+}
+
+/* 音声認識ボタンのスタイル */
+.audio-buttons button {
+  background-color: #3a3e59;
+  color: white;
+  border: 2px solid white; /* 白色の枠線を追加 */
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* 枠線の色変更も追加 */
+}
+
+.audio-buttons button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+  border-color: #444; /* 無効時に枠線を暗く */
+}
+
+.audio-buttons button:hover:enabled {
+  background-color: #5a5f7a;
+  border-color: #ffffff; /* ホバー時に枠線を白に変更 */
+}
+
+.right-wrapper {
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start; /* 左寄せにする */
+  align-items: center;
+  gap: 10px; /* ボタンの間隔 */
+}
+
+/* 中央のボックス */
+.middle-box {
+  display: flex;
+  flex-direction: column; /* 縦並びに変更 */
+  width: 30%; /* 全体の幅 */
+  gap: 10px; /* ボックス間の余白 */
+  align-items: center; /* ボックスを中央揃え */
+  margin-top: 11%;
+  margin-left: 5%;
+}
+
+/* 個別のボックス */
+.box {
+  width: 100%; /* 親要素（middle-box）の幅に合わせる */
+  aspect-ratio: 16 / 9; /* 16:9の比率を維持 */
+  background-color: #4a4a6a; /* 背景色 */
+  border-radius: 8px; /* 角を丸める */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ボックスにシャドウを追加 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  border: 2px solid white; /* 白色の枠線を追加 */
+}

@@ -44,8 +44,19 @@ export const subscribeToComment = (callback) => {
 	const commentRef = ref(db, 'comments');
 	const unsubscribe = onValue(commentRef, (snapshot) => {
 	  const data = snapshot.val();
-	  callback(data ? data.text : "");
+		callback(data ? data.text : "");
 	});
   
 	return unsubscribe; // リスナーを解除する関数を返す
 };
+
+export const getTextBoxText = async (id) => {
+	try {
+		const boxRef = ref(database, `textBoxes/${id}/text`);
+		const snapshot = await get(boxRef);
+		return snapshot.exists() ? snapshot.val() : null;
+	} catch (error) {
+		console.error("Error getting document:", error);
+		throw error;
+	}
+}

@@ -64,6 +64,7 @@ body {
     align-items: center;
     justify-content: center;
     padding-top: 20%;
+    padding-right: 50px;
 }
 
 .box-whole {
@@ -100,19 +101,19 @@ body{
     height: 100%;
 }
 
-.button {
+.button5 {
     background: none;
     border: none;
     font-size: 18px;
     cursor: pointer;
     transition: transform 0.2s;
 }
-.button-group {
+.button5-group {
     text-align: right;
     margin-right: 10%;
 }
 
-.button:hover {
+.button5:hover {
     transform: scale(1.2);
 }
 
@@ -126,7 +127,9 @@ body{
     border-radius: 4px;
     outline: none;
     transition: box-shadow 0.3s ease;
+    margin-top: -133px; /* 上方向に余白を追加 */
 }
+
 .box-name-input:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     background-color: #ffffff88;
@@ -137,3 +140,13 @@ body{
     transition: box-shadow 0.3s ease; /* 滑らかなアニメーション */
 }
 
+.hoshi2 {
+    color: #ccc;
+    font-size: 15px;
+    padding-top: 5px;
+}
+
+.hoshi1 {
+    font-size: 16px; /* アイコンの大きさを調整 */
+    color: #e1ff00; /* デフォルトの色を設定 */
+  }

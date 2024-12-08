@@ -1,3 +1,10 @@
+/* スクロールを無効にする */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ページ全体のスクロールを無効にする */
+}
 .viewer-container {
   display: flex;
   justify-content: center;
@@ -6,13 +13,13 @@
   height: 100vh; /* ビューポートの高さをフルに使用 */
   margin: 0;
   padding: 0;
-  overflow: hidden; /* 画像が画面外に溢れるのを防止 */
+  overflow: hidden; /* スクロール防止 */
   background-color: #000; /* 背景色を黒に設定（必要なら変更） */
 }
 
 .viewer-image {
-  width: 100%;
-  height: 100%;
+  width: 100%; /* 幅をビューポートに合わせる */
+  height: 100%; /* 高さもビューポートに合わせる */
   object-fit: contain; /* アスペクト比を保持しつつ全体表示 */
 }
 
