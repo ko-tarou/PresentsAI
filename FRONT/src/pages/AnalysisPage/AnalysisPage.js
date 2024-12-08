@@ -147,11 +147,11 @@ function AnalysisPage() {
       </div>
 
       <div className="description">
-        <button 
-          onClick={sendToChatGPT} 
+        <button className='description-botton'
+          onClick={sendToChatGPT}
           disabled={loading} // ローディング中は無効
         >
-          {loading ? '処理中...' : '質問を送信'}
+          {loading ? '処理中...' : '詳細を表示'}
         </button>
 
         {/* 各質問とその応答をリストとして表示 */}
