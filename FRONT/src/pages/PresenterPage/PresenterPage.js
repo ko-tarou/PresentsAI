@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,useContext } from "react";
 import "./PresenterPage.css";
 import { subscribeToComment,saveComment } from "../../firebase/realtimeService";
+import { ImageContext } from "../ImageContext"; 
 
 const PresenterPage = () => {
   const [comment, setComment] = useState("");
@@ -8,6 +9,28 @@ const PresenterPage = () => {
   const imageRef = useRef(null);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const { imageData, setImageData } = useContext(ImageContext);
+
+  const [isFirstImage, setIsFirstImage] = useState(true);
+
+  useEffect(() => {
+    if (!imageData) {
+      // 画像データが未設定の場合にデフォルトの画像を設定
+      setImageData('/img/169.png');
+    }
+  }, [imageData, setImageData]);  
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        setIsFirstImage((prev) => !prev);
+      }}
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, []);
 
   useEffect(() => {
     const unsubscribe = subscribeToComment((retrievedComment) => {
@@ -87,7 +110,7 @@ const PresenterPage = () => {
             });
 
             // 音声認識の結果をGPTに送信
-            await sendToChatGPT("全体のプレゼンの内容はこれ「"+comment+"」。今、「"+recognizedText+"」ここまで話した。次に話すべき内容は？");
+            await sendToChatGPT("全体のプレゼンの内容はこれ「"+comment+"」。今、「"+recognizedText+"」ここまで話した。次に話すべき言葉10文字以内で答えて");
           }
         }
       };
@@ -101,50 +124,50 @@ const PresenterPage = () => {
   };
 
   const stopDetection = () => {
-    // 音声認識と録音を停止
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-    }
-    if (recorderRef.current) {
-      recorderRef.current.stop();
-    }
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-    }
-  
-    // 前のタブにアクセスしてURLを変更
-    if (window.opener && !window.opener.closed) {
-      window.opener.location.href = '/Ana'; // 前のタブで /Ana を開く
-    } else {
-      console.warn('前のタブが存在しないか、アクセスできません');
-    }
-  
-    // 状態を更新
-    setStatus('ready');
-  };
-  
+	// 音声認識と録音を停止
+	if (recognitionRef.current) {
+	recognitionRef.current.stop();
+	}
+	if (recorderRef.current) {
+	recorderRef.current.stop();
+	}
+	if (streamRef.current) {
+	streamRef.current.getTracks().forEach((track) => track.stop());
+	}
 
-  const sendToChatGPT = async (text) => {
-    try {
-      const res = await fetch('http://localhost:5000/api/chatgpt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt: text }),
-      });
+	// 前のタブにアクセスしてURLを変更
+	if (window.opener && !window.opener.closed) {
+	window.opener.location.href = '/Ana'; // 前のタブで /Ana を開く
+	} else {
+	console.warn('前のタブが存在しないか、アクセスできません');
+	}
 
-      const data = await res.json();
-      setResponse(data.message);
-    } catch (error) {
-      console.error('Error calling ChatGPT API:', error);
-      setResponse('エラーが発生しました。');
-    }
-  };
+	// 状態を更新
+	setStatus('ready');
+};
 
-  
-  
-  return (
+
+const sendToChatGPT = async (text) => {
+	try {
+	const res = await fetch('http://localhost:5000/api/chatgpt', {
+		method: 'POST',
+		headers: {
+		'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ prompt: text }),
+	});
+
+	const data = await res.json();
+	setResponse(data.message);
+	} catch (error) {
+	console.error('Error calling ChatGPT API:', error);
+	setResponse('エラーが発生しました。');
+	}
+};
+
+
+
+return (
     <div className="presenter-container">
       {/* 左側のエリア */}
       <div className="left-area">
@@ -157,12 +180,15 @@ const PresenterPage = () => {
             </button>
           </div>
         </div>
-        <img
-          ref={imageRef}
-          src="/img/169.png"
-          alt="プレゼン画像"
-          className="presenter-image"
-        />
+		    {imageData ? (
+				<img
+					src={isFirstImage ? "/img/image.png" : "/img/169.png"}
+					alt="プレゼン画像"
+					className="presenter-image"
+				/>
+				) : (
+				<p>画像が読み込まれていません。</p>
+				)}
         <div className="horizontal-box">
           {comment}
         </div>
@@ -180,7 +206,13 @@ const PresenterPage = () => {
       </div>
       {/* 中央の比率16:9のボックス */}
       <div className="middle-box">
-        <div className="box"></div>
+        <div className="box">
+          <img
+            src={isFirstImage ? "/img/169.png" : "/img/image.png"}
+            alt="プレゼン画像"
+            className="presenter-image"
+          />
+        </div>
         <div className="box"></div>
         <div className="box"></div>
       </div>
