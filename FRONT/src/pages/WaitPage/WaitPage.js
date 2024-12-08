@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './WaitPage.css';  // CSSをインポート
+import './WaitPage.css';
 
 const WaitPage = () => {
   const [loading, setLoading] = useState(true);
@@ -8,9 +8,8 @@ const WaitPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false); // 3秒後にローディングを終了
-    }, 3000); // 3000ミリ秒 = 3秒
+    }, 4000); // 3000ミリ秒 = 3秒
 
-    // コンポーネントがアンマウントされるときにタイマーをクリア
     return () => clearTimeout(timer);
   }, []);
 

@@ -1,9 +1,8 @@
 /* ベース設定 */
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    font-family: 'Poppins', sans-serif; /* モダンなGoogle Fontsを使用 */
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
   background-color: #1e1e2f; /* 暗い背景色 */
   color: #e0e0e0; /* 明るい文字色 */
   }
@@ -30,10 +29,10 @@ body, html {
 }
 
 .title {
-  font-size: 4rem; /* 大きく、注目を集めるサイズ */
+  font-size: 6rem;
   font-weight: bold;
   color: #ffffff; /* 明るい文字色 */
-  margin-bottom: 2rem;
+  margin-top: -0.5rem;
   font-family: 'Playfair Display', serif; /* 優雅なタイトルフォント */
 }
 
@@ -45,4 +44,5 @@ body, html {
     flex-direction: column; /* ボタンを縦に並べる */
     align-items: center;    /* 中央揃え */
     gap: 3.0rem; /* ボタン間の余白を調整 */
+    margin-top: -1.5rem;
   }

@@ -16,7 +16,8 @@ header {
 nav {
     display: flex;
     align-items: center;
-    gap: 20%;
+    gap: 25%;
+    padding-left: 10px;
 }
 
 nav a {

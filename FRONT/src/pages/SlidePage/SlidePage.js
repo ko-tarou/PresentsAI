@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef,useContext } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useNavigate } from 'react-router-dom';
 import "./SlidePage.css";
 import TabContent from "../../components/Tab/TabContent.js";
 import DropZone from '../../components/SlidePage/DropZone/DropZone.js';
@@ -16,6 +17,9 @@ import {
 import KeyboardHandler from '../../components/SlidePage/TextBox/TextBoxDelete.js';
 import FontSize from '../../components/SlidePage/TextBox/TextFontSize.js';
 import Anglechange from '../../components/SlidePage/TextBox/AngleChange.js';
+import domtoimage from 'dom-to-image';
+import SlideList from '../../components/SlidePage/SlideList/SlideList.js';
+import { ImageContext } from '../ImageContext.js';
 
 function Slidepage() {
 	const [activeTab, setActiveTab] = useState("tab1");
@@ -23,10 +27,11 @@ function Slidepage() {
 	const [selectedBoxId, setSelectedBoxId] = useState(null); // 選択されているボックスID
 	const [isTextBoxFocused, setIsTextBoxFocused] = useState(false); // ボックスがフォーカス中か
 	const [comment, setComment] = useState(""); // コメントの内容
-
-
 	const [isTyping, setIsTyping] = useState(false); // ユーザーが入力中かどうかを管理
-	
+	const mainSlideRef =useRef(null);
+	const navigate = useNavigate();
+	const { setImageData } = useContext(ImageContext);
+
 	useEffect(() => {
 		const unsubscribe = subscribeToComment((fetchedComment) => {
 			if (!isTyping) {
@@ -56,6 +61,25 @@ function Slidepage() {
 		};
 	}, [selectedBoxId]);
 	
+	//画像保存するよ
+	const handleGenerateAndMove = async () => {
+        if (mainSlideRef.current) {
+            try {
+                const dataUrl = await domtoimage.toPng(mainSlideRef.current);
+
+                // Contextに画像データを保存
+                setImageData(dataUrl);
+
+                // 別ページに移動
+                navigate('/presen');
+            } catch (error) {
+                console.error('キャプチャエラー:', error.message);
+                alert('画像の生成に失敗しました。再試行してください。');
+            }
+        } else {
+            alert('キャプチャ対象の要素が見つかりません。');
+        }
+    };
 
 	// テキストボックスを移動
 	const handleBoxMove = async (id, newPosition) => {
@@ -103,24 +127,22 @@ function Slidepage() {
 		return () => window.removeEventListener('keydown', handleKeyDown);
 	}, [handleKeyDown]);
 
-	// フォントサイズの増加
-	const increaseFontSize = async () => {
-		if (selectedBoxId) {
-			const box = textBoxes.find((box) => box.id === selectedBoxId);
-			if (box) {
-				await updateTextBox(selectedBoxId, { fontSize: (box.fontSize || 16) + 1 });
-			}
-		}
-	};
-
 	return (
 		<DndProvider backend={HTML5Backend}>
 			<div className='slide-page'>
 				<div className='content'>
 					<div className='left-sidebar'>
 						<TabContent activeTab={activeTab} />
+						{/* 保存ボタンを左サイドバー内に配置 */}
+							<button onClick={handleGenerateAndMove}>
+								保存
+							</button>
 					</div>
-					<div className='main-slide' style={{ position: 'relative', height: '100%' }}>
+						<div 
+							className='main-slide' 
+							style={{ position: 'relative', height: '100%' }}
+							ref={mainSlideRef}
+						>
 						<KeyboardHandler
 							selectedBoxId={selectedBoxId}
 							isTextBoxFocused={isTextBoxFocused}
@@ -170,9 +192,7 @@ function Slidepage() {
 					
 
 					<div className='slide-list'>
-						<div className="slide-item"></div>
-						<div className="slide-item"></div>
-						<div className="slide-item"></div>
+						<SlideList/>
 					</div>
 					{/* 発表原稿を記述する棚 */}
 					<div className="footer"></div>
