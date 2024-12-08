@@ -101,50 +101,50 @@ const PresenterPage = () => {
   };
 
   const stopDetection = () => {
-    // 音声認識と録音を停止
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-    }
-    if (recorderRef.current) {
-      recorderRef.current.stop();
-    }
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-    }
-  
-    // 前のタブにアクセスしてURLを変更
-    if (window.opener && !window.opener.closed) {
-      window.opener.location.href = '/Ana'; // 前のタブで /Ana を開く
-    } else {
-      console.warn('前のタブが存在しないか、アクセスできません');
-    }
-  
-    // 状態を更新
-    setStatus('ready');
-  };
-  
+	// 音声認識と録音を停止
+	if (recognitionRef.current) {
+	recognitionRef.current.stop();
+	}
+	if (recorderRef.current) {
+	recorderRef.current.stop();
+	}
+	if (streamRef.current) {
+	streamRef.current.getTracks().forEach((track) => track.stop());
+	}
 
-  const sendToChatGPT = async (text) => {
-    try {
-      const res = await fetch('http://localhost:5000/api/chatgpt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt: text }),
-      });
+	// 前のタブにアクセスしてURLを変更
+	if (window.opener && !window.opener.closed) {
+	window.opener.location.href = '/Ana'; // 前のタブで /Ana を開く
+	} else {
+	console.warn('前のタブが存在しないか、アクセスできません');
+	}
 
-      const data = await res.json();
-      setResponse(data.message);
-    } catch (error) {
-      console.error('Error calling ChatGPT API:', error);
-      setResponse('エラーが発生しました。');
-    }
-  };
+	// 状態を更新
+	setStatus('ready');
+};
 
-  
-  
-  return (
+
+const sendToChatGPT = async (text) => {
+	try {
+	const res = await fetch('http://localhost:5000/api/chatgpt', {
+		method: 'POST',
+		headers: {
+		'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ prompt: text }),
+	});
+
+	const data = await res.json();
+	setResponse(data.message);
+	} catch (error) {
+	console.error('Error calling ChatGPT API:', error);
+	setResponse('エラーが発生しました。');
+	}
+};
+
+
+
+return (
     <div className="presenter-container">
       {/* 左側のエリア */}
       <div className="left-area">
